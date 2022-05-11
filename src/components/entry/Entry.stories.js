@@ -14,7 +14,7 @@ export default {
 	],
 };
 
-const props = { name: 'Feuersalamander' };
+const props = { entry: { name: 'Feuersalamander' } };
 
 export function Default() {
 	return <Entry {...props} />;
