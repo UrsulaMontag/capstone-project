@@ -1,9 +1,16 @@
-import styled from 'styled-components';
+import Entry from '../src/components/entry/Entry';
+import { getEntries } from '../src/services/get-entries';
 
-export default function Home() {
-	return <Title>Welcome world to my capstone project</Title>;
+export function getStaticProps() {
+	const entries = getEntries();
+
+	return {
+		props: {
+			entries: entries,
+		},
+	};
 }
 
-const Title = styled.h1`
-	color: red;
-`;
+export default function Home({ entries }) {
+	return <Entry entry={entries} />;
+}
