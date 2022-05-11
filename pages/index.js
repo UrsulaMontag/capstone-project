@@ -1,5 +1,9 @@
-import styles from '../styles/Home.module.css';
+import styled from 'styled-components';
 
 export default function Home() {
-	return <h1 className={styles.title}>Welcome world to my capstone project</h1>;
+	return <Title>Welcome world to my capstone project</Title>;
 }
+
+const Title = styled.h1`
+	color: red;
+`;
