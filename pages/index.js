@@ -1,4 +1,4 @@
-import Entry from '../src/components/entry/Entry';
+import EntriesList from '../src/components/entriesList/EntriesList';
 import { getEntries } from '../src/services/get-entries';
 import { getLocations } from '../src/services/get-locations';
 
@@ -14,5 +14,5 @@ export function getStaticProps() {
 }
 
 export default function Home({ entries, locations }) {
-	return <Entry entry={entries} location={locations} />;
+	return <EntriesList entry={entries} location={locations} />;
 }
