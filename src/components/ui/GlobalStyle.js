@@ -25,8 +25,7 @@ const GlobalStyle = createGlobalStyle`
     --text-color-dark: #1d3041;
     --headline-little: #adbf2b;
     --button-bg-color: #adbf2b;
-    
-  }
+      }
   
 `;
 
