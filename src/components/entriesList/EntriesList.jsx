@@ -1,8 +1,9 @@
 import Entry from '../entry/Entry';
+import { StyledList } from './EntriesList.styled';
 
 export default function EntriesList({ entries, locations }) {
 	return (
-		<ul>
+		<StyledList>
 			{entries.map(entry => {
 				return (
 					<li key={entry.id}>
@@ -10,6 +11,6 @@ export default function EntriesList({ entries, locations }) {
 					</li>
 				);
 			})}
-		</ul>
+		</StyledList>
 	);
 }
