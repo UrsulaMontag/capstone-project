@@ -14,5 +14,5 @@ export function getStaticProps() {
 }
 
 export default function Home({ entries, locations }) {
-	return <EntriesList entry={entries} location={locations} />;
+	return <EntriesList entries={entries} locations={locations} />;
 }
