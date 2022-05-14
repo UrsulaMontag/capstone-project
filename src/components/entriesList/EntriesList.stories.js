@@ -19,6 +19,7 @@ const props = {
 		{
 			id: 1,
 			date: '2022-08-05',
+			location: [48.745537999999996, 9.4452515],
 			name: 'Feuersalamander',
 			alive: true,
 			number: 3,
@@ -28,6 +29,7 @@ const props = {
 		{
 			id: 2,
 			date: '2022-11-05',
+			location: [48.736193, 9.40904],
 			name: 'Hirschkäfer',
 			alive: true,
 			number: 1,
@@ -37,29 +39,13 @@ const props = {
 		{
 			id: 3,
 			date: '2022-11-05',
+			location: [48.7198, 9.419143],
 			name: 'Teichmolch',
 			alive: true,
 			number: 8,
 			topography: 'Unterer Balkeshauweg, Tümpel am Wegrand unter Forstfläche',
 			descripcion:
 				'Ein Wimmelbecken an Molchen. Bestimmt noch andere Arten hier vorhanden. Fadenwürmer im selben Tümpel.',
-		},
-	],
-	locations: [
-		{
-			id: 12,
-			entryId: 1,
-			location: [48.745537999999996, 9.4452515],
-		},
-		{
-			id: 22,
-			entryId: 2,
-			location: [48.736193, 9.40904],
-		},
-		{
-			id: 32,
-			entryId: 3,
-			location: [48.7198, 9.419143],
 		},
 	],
 };
