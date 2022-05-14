@@ -2,6 +2,7 @@
   {
     "id": 1,
     "date": "2022-08-05",
+    "location": [48.745537999999996, 9.4452515],
     "name": "Feuersalamander",
     "alive": true,
     "number": 3,
@@ -11,6 +12,7 @@
   {
     "id": 2,
     "date": "2022-11-05",
+    "location": [48.736193, 9.40904],
     "name": "Hirschkäfer",
     "alive": true,
     "number": 1,
@@ -20,6 +22,7 @@
   {
     "id": 3,
     "date": "2022-11-05",
+    "location": [48.7198, 9.419143],
     "name": "Teichmolch",
     "alive": true,
     "number": 8,
