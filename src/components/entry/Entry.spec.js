@@ -6,9 +6,15 @@ describe('Entry', () => {
 	it('renders name and location of entry only', () => {
 		render(
 			<Entry
-				entry={{ name: 'Feuersalamander' }}
-				location={{
+				entry={{
+					id: 1,
+					date: '2022-08-05',
 					location: [48.745537999999996, 9.4452515],
+					name: 'Feuersalamander',
+					alive: true,
+					number: 3,
+					topography: 'Steinhaufen hinter Haus',
+					descripcion: 'Drei muntere Salamander am Stammplatz unter dem Steinhaufen.',
 				}}
 			/>
 		);
