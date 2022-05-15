@@ -1,5 +1,6 @@
 import EntriesList from '../src/components/entriesList/EntriesList';
 import { getEntries } from '../src/services/get-entries';
+import dynamic from 'next/dynamic';
 
 export function getStaticProps() {
 	const entries = getEntries();
@@ -11,5 +12,13 @@ export function getStaticProps() {
 }
 
 export default function Home({ entries }) {
-	return <EntriesList entries={entries} />;
+	const MapWithNoSSR = dynamic(() => import('../src/components/map/Map'), {
+		ssr: false,
+	});
+	return (
+		<>
+			<EntriesList entries={entries} />
+			<MapWithNoSSR />
+		</>
+	);
 }
