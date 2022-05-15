@@ -15,8 +15,7 @@ export default {
 };
 
 const props = {
-	entry: { name: 'Feuersalamander' },
-	location: { location: [48.745537999999996, 9.4452515] },
+	entry: { name: 'Feuersalamander', location: [48.745537999999996, 9.4452515] },
 };
 
 export function Default() {
