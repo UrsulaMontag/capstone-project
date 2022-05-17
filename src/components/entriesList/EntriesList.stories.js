@@ -6,7 +6,7 @@ export default {
 	decorators: [
 		Story => {
 			return (
-				<div style={{ padding: '3em', maxWidth: '400px' }}>
+				<div>
 					<Story />
 				</div>
 			);

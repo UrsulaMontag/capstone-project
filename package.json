@@ -17,14 +17,20 @@
     "test:watch": "jest --env=jsdom --watch"
   },
   "dependencies": {
+    "leaflet": "^1.8.0",
+    "leaflet-defaulticon-compatibility": "^0.1.1",
+    "leaflet-geosearch": "^3.6.0",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-is": "^18.1.0",
+    "react-leaflet": "^4.0.0",
+    "regenerator-runtime": "^0.13.9",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.7",
     "@storybook/addon-actions": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
     "@storybook/addon-interactions": "^6.4.22",
@@ -33,6 +39,7 @@
     "@storybook/testing-library": "^0.0.11",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
+    "@types/leaflet": "^1.7.10",
     "babel-loader": "^8.2.5",
     "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.15.0",
@@ -48,5 +55,11 @@
     "jest-environment-jsdom": "^28.1.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11"
+  ],
+  "author": "Mapbox",
+  "license": "MIT"
 }
