@@ -26,7 +26,8 @@
     "react-is": "^18.1.0",
     "react-leaflet": "^4.0.0",
     "regenerator-runtime": "^0.13.9",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",

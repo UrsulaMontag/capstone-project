@@ -1,7 +1,7 @@
 import EntriesList from '../src/components/entriesList/EntriesList';
 import { getEntries } from '../src/services/get-entries';
 import dynamic from 'next/dynamic';
-import { StyledMap } from '../src/components/map/Map.styled';
+import { StyledMap } from '../src/components/ui/Map.styled';
 
 export function getStaticProps() {
 	const entries = getEntries();
