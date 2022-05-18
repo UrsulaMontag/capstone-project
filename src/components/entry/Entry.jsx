@@ -1,4 +1,4 @@
-import { StyledEntry } from './Entry.styled';
+import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
 
 export default function Entry({ entry }) {

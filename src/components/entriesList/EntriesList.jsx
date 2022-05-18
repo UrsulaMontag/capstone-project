@@ -1,5 +1,5 @@
 import Entry from '../entry/Entry';
-import { StyledList } from './EntriesList.styled';
+import { StyledList } from '../ui/EntriesList.styled';
 
 export default function EntriesList({ entries }) {
 	return (
