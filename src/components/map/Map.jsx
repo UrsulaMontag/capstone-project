@@ -28,7 +28,7 @@ function Map() {
 		<MapContainer
 			scrollWheelZoom
 			center={[48.867712, 9.306532]}
-			zoom={14}
+			zoom={12}
 			style={{ height: '100%', width: '100%' }}
 		>
 			<TileLayer
