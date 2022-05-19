@@ -2,19 +2,19 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function LocationMarker() {
 	const [position, setPosition] = useState(null);
 	const map = useMapEvents({
-		click() {
-			map.locate();
-		},
-		locationfound(e) {
-			setPosition(e.latlng);
-			map.flyTo(e.latlng, map.getZoom());
+		locationfound(location) {
+			setPosition(location.latlng);
+			map.flyTo(location.latlng, map.getZoom());
 		},
 	});
+	useEffect(() => {
+		map.locate();
+	}, [map]);
 
 	return position === null ? null : (
 		<Marker position={position}>
