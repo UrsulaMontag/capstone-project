@@ -7,8 +7,10 @@ export default function Entry({ entry }) {
 			<Typography variant="h3">Name:</Typography>
 			<Typography variant="body1">{entry.name}</Typography>
 			<Typography variant="h3">Place:</Typography>
-			<Typography variant="body1">long: {entry.location[0]}</Typography>
-			<Typography variant="body1">lat: {entry.location[1]}</Typography>
+			<Typography variant="body1">
+				lng: {entry.location[0]} <br />
+				lat: {entry.location[1]}
+			</Typography>
 		</StyledEntry>
 	);
 }
