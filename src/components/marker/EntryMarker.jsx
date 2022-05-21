@@ -3,7 +3,6 @@ import useStore from '../../lib/useStore.js';
 
 export default function EntryMarker() {
 	const entries = useStore(state => state.entries);
-	console.log(entries);
 	return (
 		<>
 			{entries.map(entry => {
