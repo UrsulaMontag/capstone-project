@@ -1,8 +1,17 @@
+import { nanoid } from 'nanoid';
 import create from 'zustand';
+import produce from 'immer';
 
 const useStore = create(set => {
-	console.log(set);
 	return {
+		currentLocation: null,
+		addCurrentLocation: () => {
+			navigator.geolocation.getCurrentPosition(currentLocation => {
+				set(() => ({
+					currentLocation,
+				}));
+			});
+		},
 		entries: [
 			{
 				id: 1,
@@ -36,6 +45,23 @@ const useStore = create(set => {
 					'Ein Wimmelbecken an Molchen. Bestimmt noch andere Arten hier vorhanden. Fadenwürmer im selben Tümpel.',
 			},
 		],
+		addEntry: (entry, date, location) => {
+			set(
+				produce(draft => {
+					draft.entries.push({
+						name: entry.nameValue,
+						id: nanoid(),
+						date: date,
+						location: location,
+						alive: true,
+						dead: false,
+						number: entry.numberValue,
+						topography: entry.topographyValue,
+						description: entry.descriptionValue,
+					});
+				})
+			);
+		},
 	};
 });
 export default useStore;
