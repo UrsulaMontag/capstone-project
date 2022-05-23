@@ -24,7 +24,7 @@ export default function EntryCreateForm() {
 	const submit = event => {
 		event.preventDefault();
 		addEntry(entryInput, date, [locationInput.coords.latitude, locationInput.coords.longitude]);
-		setEntryInput('');
+		event.target.reset();
 	};
 
 	return (
