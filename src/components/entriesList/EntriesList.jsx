@@ -1,6 +1,6 @@
 import useStore from '../../lib/useStore';
 import Entry from '../entry/Entry';
-import { StyledList } from '../ui/StyledListEntries';
+import { StyledList } from '../ui/ListEntries.styled';
 
 export default function EntriesList() {
 	const entries = useStore(state => state.entries);
