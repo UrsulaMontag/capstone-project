@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import useStore from '../../lib/useStore';
+import { StyledEntryForm } from '../ui/form/FormEntry.styled';
+import Input from '../ui/form/InputEntry.styled';
 
 export default function EntryCreateForm() {
 	const initInputState = {
@@ -28,14 +30,16 @@ export default function EntryCreateForm() {
 	};
 
 	return (
-		<form onSubmit={submit}>
+		<StyledEntryForm onSubmit={submit}>
 			<label>
 				Name:{' '}
-				<input
+				<Input
 					required
 					type="text"
 					name="name"
 					value={entryInput.nameValue}
+					variant="text"
+					placeholder="Feuersalamander"
 					onChange={event => {
 						setEntryInput({
 							...entryInput,
@@ -44,68 +48,23 @@ export default function EntryCreateForm() {
 					}}
 				/>
 			</label>
-			{/* <label>
-				Datum:{' '}
-				<input
-					type="text"
-					name="date"
-					value={entryInput.dateValue}
-					onChange={() => {
-						setEntryInput({
-							...entryInput,
-							dateValue: date,
-						});
-					}}
-				/>
-			</label> */}
 
-			{/* <label>
-				Verortung:{' '}
-				<input
-					type="text"
-					name="location"
-					value={locationInput}
-					onChange={() => {
-						addLocationInput({
-							locationInput: [date],
-						});
-					}}
-				/>
-			</label> */}
-			<label>
-				lebend{' '}
-				<input
-					type="checkbox"
-					name="alive"
-					checked={entryInput.isAliveValue}
-					onChange={event => {
-						setEntryInput({
-							...entryInput,
-							isAliveValue: event.target.value,
-						});
-					}}
-				/>
-			</label>
-			<label>
-				tot{' '}
-				<input
-					type="checkbox"
-					name="dead"
-					checked={entryInput.isDeadValue}
-					onChange={event => {
-						setEntryInput({
-							...entryInput,
-							isDeadValue: event.target.value,
-						});
-					}}
-				/>
-			</label>
+			<fieldset>
+				<label>
+					lebend <input type="radio" value="alive" name="isAlive" variant="checkbox" />
+				</label>
+				<label>
+					tot <input type="radio" name="isAlive" value="dead" variant="checkbox" />
+				</label>
+			</fieldset>
 			<label>
 				Anzahl an Individuen:{' '}
-				<input
+				<Input
 					type="text"
 					name="number"
 					value={entryInput.numberValue}
+					variant="number"
+					placeholder="2"
 					onChange={event => {
 						if (!event.target.value.match(/[^0-9]/)) {
 							setEntryInput({
@@ -113,17 +72,19 @@ export default function EntryCreateForm() {
 								numberValue: event.target.value,
 							});
 						} else {
-							alert('Only numeric input allowed');
+							alert('Only numeric Input allowed');
 						}
 					}}
 				/>
 			</label>
 			<label>
 				Fundort Beschreibung:{' '}
-				<input
-					type="text"
+				<Input
+					type="textarea"
 					name="topography"
 					value={entryInput.topographyValue}
+					variant="textarea"
+					placeholder="Hinterer Balkeshauweg. Schotterweg im Wald."
 					onChange={event => {
 						setEntryInput({
 							...entryInput,
@@ -134,10 +95,12 @@ export default function EntryCreateForm() {
 			</label>
 			<label>
 				Beschreibe deine Entdeckung:{' '}
-				<input
-					type="text"
+				<Input
+					type="textarea"
 					name="description"
 					value={entryInput.descriptionValue}
+					variant="textarea"
+					placeholder="Zwei ausgewachsene Exemplare zwischen Graben und Spazierweg."
 					onChange={event => {
 						setEntryInput({
 							...entryInput,
@@ -147,7 +110,7 @@ export default function EntryCreateForm() {
 				/>
 			</label>
 
-			<button type="submit">submit</button>
-		</form>
+			<button type="submit">Eintrag Erstellen</button>
+		</StyledEntryForm>
 	);
 }
