@@ -14,7 +14,6 @@ describe('Form', () => {
 		expect(topography).toBeInTheDocument();
 		expect(description).toBeInTheDocument();
 
-		render(<EntryCreateForm />);
 		const isAlive = screen.getByLabelText(/lebend/i);
 		const isDead = screen.getByLabelText(/tot/i);
 

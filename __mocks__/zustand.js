@@ -1,5 +1,5 @@
 // @see https://docs.pmnd.rs/zustand/testing
-
+import '@testing-library/jest-dom';
 import actualCreate from 'zustand';
 import { act } from 'react-dom/test-utils';
 
