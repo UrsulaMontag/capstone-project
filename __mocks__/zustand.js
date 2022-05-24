@@ -36,6 +36,19 @@ const initialEntries = [
 			'Ein Wimmelbecken an Molchen. Bestimmt noch andere Arten hier vorhanden. Fadenwürmer im selben Tümpel.',
 	},
 ];
+const mockGeolocation = {
+	getCurrentPosition: jest.fn().mockImplementationOnce(success =>
+		Promise.resolve(
+			success({
+				coords: {
+					latitude: 51.1,
+					longitude: 45.3,
+				},
+			})
+		)
+	),
+};
+global.navigator.geolocation = mockGeolocation;
 
 // a variable to hold reset functions for all stores declared in the app
 const storeResetFns = new Set();

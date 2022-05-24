@@ -5,9 +5,9 @@ describe('Form', () => {
 	it('renders three input fields, two radiobuttons in a fieldset,', () => {
 		render(<EntryCreateForm />);
 		const name = screen.getByLabelText(/Name/i);
-		const number = screen.getByLabelText(/Anzahl Individuen/i);
+		const number = screen.getByLabelText(/Anzahl an Individuen/i);
 		const topography = screen.getByLabelText(/Fundort Beschreibung/i);
-		const description = screen.getByLabelText(/Beschreibe Entdeckung/i);
+		const description = screen.getByLabelText(/Beschreibe deine Entdeckung/i);
 
 		expect(name).toBeInTheDocument();
 		expect(number).toBeInTheDocument();
