@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import useStore from '../../lib/useStore';
-import { StyledEntryForm } from '../ui/form/FormEntry.styled';
+import Fieldset from '../ui/form/Fieldset.styled';
+import StyledEntryForm from '../ui/form/FormEntry.styled';
 import Input from '../ui/form/InputEntry.styled';
 
 export default function EntryCreateForm() {
@@ -38,7 +39,6 @@ export default function EntryCreateForm() {
 					type="text"
 					name="name"
 					value={entryInput.nameValue}
-					variant="text"
 					placeholder="Feuersalamander"
 					onChange={event => {
 						setEntryInput({
@@ -49,14 +49,14 @@ export default function EntryCreateForm() {
 				/>
 			</label>
 
-			<fieldset>
+			<Fieldset>
 				<label>
-					lebend <input type="radio" value="alive" name="isAlive" variant="checkbox" />
+					lebend <input type="radio" value="alive" name="isAlive" variant="radio" />
 				</label>
 				<label>
-					tot <input type="radio" name="isAlive" value="dead" variant="checkbox" />
+					tot <input type="radio" name="isAlive" value="dead" variant="radio" />
 				</label>
-			</fieldset>
+			</Fieldset>
 			<label>
 				Anzahl an Individuen:{' '}
 				<Input
@@ -110,7 +110,9 @@ export default function EntryCreateForm() {
 				/>
 			</label>
 
-			<button type="submit">Eintrag Erstellen</button>
+			<button type="submit" variant="submit">
+				Eintrag Erstellen
+			</button>
 		</StyledEntryForm>
 	);
 }
