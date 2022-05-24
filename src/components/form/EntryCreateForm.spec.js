@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import EntryCreateForm from '../create/EntryCreateForm';
+import EntryCreateForm from './EntryCreateForm';
 
 describe('Form', () => {
 	it('renders three input fields, two radiobuttons in a fieldset,', () => {
