@@ -30,9 +30,8 @@ export default function EntryCreateForm() {
 
 	const resetFormState = () => {
 		//addLocationInput('');
-
-		setEntryInput('');
 		setIsAlive('alive');
+		setEntryInput(initInputState);
 	};
 
 	const submit = event => {
