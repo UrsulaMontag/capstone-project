@@ -51,6 +51,7 @@ export default function EntryCreateForm() {
 				<Input
 					required
 					type="text"
+					maxlength="100"
 					name="name"
 					value={entryInput.nameValue}
 					placeholder="Feuersalamander"
@@ -112,6 +113,7 @@ export default function EntryCreateForm() {
 				<Input
 					type="textarea"
 					name="topography"
+					maxlength="400"
 					value={entryInput.topographyValue}
 					variant="textarea"
 					placeholder="Hinterer Balkeshauweg. Schotterweg im Wald."
@@ -128,6 +130,7 @@ export default function EntryCreateForm() {
 				<Input
 					type="textarea"
 					name="description"
+					maxlength="1500"
 					value={entryInput.descriptionValue}
 					variant="textarea"
 					placeholder="Zwei ausgewachsene Exemplare zwischen Graben und Spazierweg."
