@@ -38,8 +38,8 @@ export default function EntryCreateForm() {
 		event.preventDefault();
 		console.log(locationInput);
 		addEntry(entryInput, isAlive, date, [
-			locationInput?.coords.latitude,
-			locationInput?.coords.longitude,
+			locationInput.coords?.latitude,
+			locationInput.coords?.longitude,
 		]);
 		alert('Erfolgreich in dein Feldtagebuch eingetragen 🐜');
 		resetFormState('');
