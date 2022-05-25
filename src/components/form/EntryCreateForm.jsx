@@ -40,6 +40,7 @@ export default function EntryCreateForm() {
 			locationInput.coords.latitude,
 			locationInput.coords.longitude,
 		]);
+		alert('Erfolgreich in dein Feldtagebuch eingetragen 🐜');
 		resetFormState('');
 		event.target.reset();
 	};
