@@ -34,12 +34,12 @@ export default function EntryCreateForm() {
 		setEntryInput(initInputState);
 	};
 
-	const submit = async event => {
+	const submit = event => {
 		event.preventDefault();
 		console.log(locationInput);
-		await addEntry(entryInput, isAlive, date, [
-			locationInput.coords.latitude,
-			locationInput.coords.longitude,
+		addEntry(entryInput, isAlive, date, [
+			locationInput?.coords.latitude,
+			locationInput?.coords.longitude,
 		]);
 		alert('Erfolgreich in dein Feldtagebuch eingetragen 🐜');
 		resetFormState('');
