@@ -7,8 +7,6 @@ import Input from '../ui/form/InputEntry.styled';
 export default function EntryCreateForm() {
 	const initInputState = {
 		nameValue: '',
-		isAliveValue: true,
-		isDeadValue: false,
 		numberValue: '',
 		topographyValue: '',
 		descriptionValue: '',
@@ -31,9 +29,10 @@ export default function EntryCreateForm() {
 	const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
 
 	const resetFormState = () => {
-		addLocationInput('');
-		setIsAlive('');
+		//addLocationInput('');
+
 		setEntryInput('');
+		setIsAlive('alive');
 	};
 
 	const submit = event => {
@@ -42,10 +41,8 @@ export default function EntryCreateForm() {
 			locationInput.coords.latitude,
 			locationInput.coords.longitude,
 		]);
-		console.log(event.target);
-		//setEntryInput('');
-		//event.target.reset();
-		resetFormState();
+		resetFormState('');
+		event.target.reset();
 	};
 
 	return (
