@@ -24,17 +24,28 @@ export default function EntryCreateForm() {
 
 	const handleChange = event => {
 		setIsAlive(event.target.value);
+		console.log(event.target.value);
 	};
 
 	const current = new Date();
 	const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
 
+	const resetFormState = () => {
+		addLocationInput('');
+		setIsAlive('');
+		setEntryInput('');
+	};
+
 	const submit = event => {
 		event.preventDefault();
-		addEntry(entryInput, date, [locationInput.coords.latitude, locationInput.coords.longitude]);
-		setEntryInput('');
-		setIsAlive('');
-		addLocationInput('');
+		addEntry(entryInput, isAlive, date, [
+			locationInput.coords.latitude,
+			locationInput.coords.longitude,
+		]);
+		console.log(event.target);
+		//setEntryInput('');
+		//event.target.reset();
+		resetFormState();
 	};
 
 	return (
