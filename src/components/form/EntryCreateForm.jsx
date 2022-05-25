@@ -15,11 +15,16 @@ export default function EntryCreateForm() {
 	};
 	const addEntry = useStore(state => state.addEntry);
 	const [entryInput, setEntryInput] = useState(initInputState);
+	const [isAlive, setIsAlive] = useState('alive');
 	const locationInput = useStore(state => state.currentLocation);
 	const addLocationInput = useStore(state => state.addCurrentLocation);
 	useEffect(() => {
 		addLocationInput();
 	}, [addLocationInput]);
+
+	const handleChange = event => {
+		setIsAlive(event.target.value);
+	};
 
 	const current = new Date();
 	const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
@@ -27,7 +32,9 @@ export default function EntryCreateForm() {
 	const submit = event => {
 		event.preventDefault();
 		addEntry(entryInput, date, [locationInput.coords.latitude, locationInput.coords.longitude]);
-		event.target.reset();
+		setEntryInput('');
+		setIsAlive('');
+		addLocationInput('');
 	};
 
 	return (
@@ -51,10 +58,26 @@ export default function EntryCreateForm() {
 
 			<Fieldset>
 				<label>
-					lebend <input type="radio" value="alive" name="isAlive" variant="radio" />
+					lebend{' '}
+					<input
+						type="radio"
+						value="alive"
+						checked={isAlive === 'alive'}
+						name="isAlive"
+						variant="radio"
+						onChange={handleChange}
+					/>
 				</label>
 				<label>
-					tot <input type="radio" name="isAlive" value="dead" variant="radio" />
+					tot{' '}
+					<input
+						type="radio"
+						checked={isAlive === 'dead'}
+						name="isAlive"
+						value="dead"
+						variant="radio"
+						onChange={handleChange}
+					/>
 				</label>
 			</Fieldset>
 			<label>
