@@ -34,9 +34,10 @@ export default function EntryCreateForm() {
 		setEntryInput(initInputState);
 	};
 
-	const submit = event => {
+	const submit = async event => {
 		event.preventDefault();
-		addEntry(entryInput, isAlive, date, [
+		console.log(locationInput);
+		await addEntry(entryInput, isAlive, date, [
 			locationInput.coords.latitude,
 			locationInput.coords.longitude,
 		]);
