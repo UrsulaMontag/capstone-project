@@ -18,7 +18,6 @@ export default function EntryCreateForm() {
 
 	const handleChange = event => {
 		setIsAlive(event.target.value);
-		console.log(event.target.value);
 	};
 
 	const current = new Date();
@@ -31,9 +30,8 @@ export default function EntryCreateForm() {
 
 	const submit = event => {
 		event.preventDefault();
-		console.log(currentLocation);
 		addEntry(entryInput, isAlive, date, [currentLocation.lat, currentLocation.lng]);
-		alert('Erfolgreich in dein Feldtagebuch eingetragen 🐜');
+		alert('Erfolgreich in dein Feldtagebuch eingetragen');
 		resetFormState('');
 		event.target.reset();
 	};
