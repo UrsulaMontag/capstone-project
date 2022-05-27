@@ -15,7 +15,6 @@ export default function EntryCreateForm() {
 	const [entryInput, setEntryInput] = useState(initInputState);
 	const [isAlive, setIsAlive] = useState('alive');
 	const currentLocation = useStore(state => state.currentLocation);
-	//const addLocationInput = useStore(state => state.addCurrentLocation);
 
 	const handleChange = event => {
 		setIsAlive(event.target.value);

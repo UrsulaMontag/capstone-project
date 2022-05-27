@@ -5,10 +5,9 @@ import useStore from '../../lib/useStore';
 export default function LocationMarker() {
 	const addLocation = useStore(state => state.addLocation);
 	const currentLocation = useStore(state => state.currentLocation);
-	//const [position, setPosition] = useState(null);
+
 	const map = useMapEvents({
 		locationfound(location) {
-			//setPosition(location.latlng);
 			addLocation(location.latlng);
 			map.flyTo(location.latlng, 14);
 		},
