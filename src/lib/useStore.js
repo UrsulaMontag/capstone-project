@@ -5,12 +5,8 @@ import produce from 'immer';
 const useStore = create(set => {
 	return {
 		currentLocation: null,
-		addCurrentLocation: () => {
-			navigator.geolocation.getCurrentPosition(currentLocation => {
-				set(() => ({
-					currentLocation,
-				}));
-			});
+		addLocation: currentLocation => {
+			set({ currentLocation });
 		},
 		entries: [
 			{

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useStore from '../../lib/useStore';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
@@ -14,11 +14,8 @@ export default function EntryCreateForm() {
 	const addEntry = useStore(state => state.addEntry);
 	const [entryInput, setEntryInput] = useState(initInputState);
 	const [isAlive, setIsAlive] = useState('alive');
-	const locationInput = useStore(state => state.currentLocation);
-	const addLocationInput = useStore(state => state.addCurrentLocation);
-	useEffect(() => {
-		addLocationInput();
-	}, [addLocationInput]);
+	const currentLocation = useStore(state => state.currentLocation);
+	//const addLocationInput = useStore(state => state.addCurrentLocation);
 
 	const handleChange = event => {
 		setIsAlive(event.target.value);
@@ -29,18 +26,14 @@ export default function EntryCreateForm() {
 	const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
 
 	const resetFormState = () => {
-		//addLocationInput('');
 		setIsAlive('alive');
 		setEntryInput(initInputState);
 	};
 
 	const submit = event => {
 		event.preventDefault();
-		console.log(locationInput);
-		addEntry(entryInput, isAlive, date, [
-			locationInput.coords?.latitude,
-			locationInput.coords?.longitude,
-		]);
+		console.log(currentLocation);
+		addEntry(entryInput, isAlive, date, [currentLocation.lat, currentLocation.lng]);
 		alert('Erfolgreich in dein Feldtagebuch eingetragen 🐜');
 		resetFormState('');
 		event.target.reset();
