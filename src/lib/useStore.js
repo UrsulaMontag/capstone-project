@@ -57,6 +57,17 @@ const useStore = create(set => {
 				})
 			);
 		},
+		deleteEntry: index => {
+			set(
+				produce(draft => {
+					draft.entries.splice(index, 1);
+				})
+			);
+		},
+		deleteMode: false,
+		toggleDeleteMode: () => {
+			set(state => ({ deleteMode: !state.deleteMode }));
+		},
 	};
 });
 export default useStore;
