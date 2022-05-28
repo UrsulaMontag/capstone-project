@@ -57,6 +57,14 @@ const useStore = create(set => {
 				})
 			);
 		},
+		isDeleteMode: false,
+		setDeleteMode: () => {
+			set({ isDeleteMode: true });
+		},
+		isEditMode: false,
+		setEditMode: () => {
+			set({ isEditMode: true });
+		},
 		deleteEntry: index => {
 			set(
 				produce(draft => {
@@ -64,9 +72,21 @@ const useStore = create(set => {
 				})
 			);
 		},
-		deleteMode: false,
-		toggleDeleteMode: () => {
-			set(state => ({ deleteMode: !state.deleteMode }));
+		editEntry: (data, id) => {
+			console.log(data, id);
+			set(
+				produce(draft => {
+					return {
+						entries: draft.entries.map(
+							entry =>
+								entry.id === id && {
+									...data,
+									...entry,
+								}
+						),
+					};
+				})
+			);
 		},
 	};
 });

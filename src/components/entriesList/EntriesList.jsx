@@ -1,4 +1,4 @@
-import useStore from '../../lib/useStore';
+import useStore from '../../lib/store/useStore';
 import Entry from '../entry/Entry';
 import { StyledList } from '../ui/ListEntries.styled';
 
