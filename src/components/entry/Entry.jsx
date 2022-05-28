@@ -3,6 +3,7 @@ import Typography from '../ui/Typography';
 import useStore from '../../lib/useStore';
 import { useState } from 'react';
 import RenderIf from '../global/RenderIf';
+import Button from '../ui/Button.styled';
 
 export default function Entry({ entry, index }) {
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
@@ -24,7 +25,7 @@ export default function Entry({ entry, index }) {
 			<RenderIf isTrue={!isDeleteMode}>
 				<button
 					type="button"
-					variant="delete"
+					variant="smallDo"
 					onClick={() => {
 						toggleDeleteMode();
 					}}
@@ -33,18 +34,17 @@ export default function Entry({ entry, index }) {
 				</button>
 			</RenderIf>
 			<RenderIf isTrue={isDeleteMode}>
-				<button
+				<Button
 					type="button"
-					variant="confirmation"
+					variant="warning"
 					onClick={() => {
 						deleteEntry(index);
 					}}
 				>
 					Unwiederruflich Löschen
-				</button>
+				</Button>
 				<button
 					type="button"
-					variant="exit"
 					onClick={() => {
 						toggleDeleteMode();
 					}}
