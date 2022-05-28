@@ -1,16 +1,32 @@
 import { useState } from 'react';
-import useStore from '../../lib/useStore';
+import useStore from '../../lib/store/useStore';
+import { toggleMode } from '../../lib/helpers/toggleFunctions';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
 import Input from '../ui/form/InputEntry.styled';
 
-export default function EntryCreateForm() {
-	const initInputState = {
-		nameValue: '',
-		numberValue: '',
-		topographyValue: '',
-		descriptionValue: '',
-	};
+export default function EntryCreateForm({ entryEdit }) {
+	let initInputState = {};
+	if (entryEdit) {
+		initInputState = {
+			nameValue: entryEdit.name,
+			numberValue: entryEdit.number,
+			topographyValue: entryEdit.topography,
+			descriptionValue: entryEdit.description,
+			date: entryEdit.date,
+			location: entryEdit.location,
+		};
+	} else {
+		initInputState = {
+			nameValue: '',
+			numberValue: '',
+			topographyValue: '',
+			descriptionValue: '',
+		};
+	}
+	const editEntry = useStore(state => state.editEntry);
+	const isEditMode = useStore(state => state.isEditMode);
+	const setEditMode = useStore(state => state.setEditMode);
 	const addEntry = useStore(state => state.addEntry);
 	const [entryInput, setEntryInput] = useState(initInputState);
 	const [isAlive, setIsAlive] = useState('alive');
@@ -28,12 +44,18 @@ export default function EntryCreateForm() {
 		setEntryInput(initInputState);
 	};
 
-	const submit = event => {
+	const submit = async event => {
 		event.preventDefault();
-		addEntry(entryInput, isAlive, date, [currentLocation.lat, currentLocation.lng]);
-		alert('Erfolgreich in dein Feldtagebuch eingetragen');
-		resetFormState('');
-		event.target.reset();
+		if (entryEdit.name) {
+			console.log('-------------------------------------', entryEdit);
+			await editEntry(entryEdit, entryEdit.id);
+			toggleMode(isEditMode, setEditMode);
+		} else {
+			addEntry(entryInput, isAlive, date, currentLocation);
+			alert('Erfolgreich in dein Feldtagebuch eingetragen');
+			resetFormState('');
+			event.target.reset();
+		}
 	};
 
 	return (

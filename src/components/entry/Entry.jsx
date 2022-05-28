@@ -1,17 +1,17 @@
 import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
-import useStore from '../../lib/useStore';
-import { useState } from 'react';
+import useStore from '../../lib/store/useStore';
+import { toggleMode } from '../../lib/helpers/toggleFunctions';
 import RenderIf from '../global/RenderIf';
 import Button from '../ui/Button.styled';
+import EntryCreateForm from '../form/EntryCreateForm';
 
 export default function Entry({ entry, index }) {
-	const [isDeleteMode, setIsDeleteMode] = useState(false);
+	const isDeleteMode = useStore(state => state.isDeleteMode);
+	const setDeleteMode = useStore(state => state.setDeleteMode);
+	const isEditMode = useStore(state => state.isEditMode);
+	const setEditMode = useStore(state => state.setEditMode);
 	const deleteEntry = useStore(state => state.deleteEntry);
-
-	function toggleDeleteMode() {
-		setIsDeleteMode(!isDeleteMode);
-	}
 
 	return (
 		<StyledEntry>
@@ -23,15 +23,15 @@ export default function Entry({ entry, index }) {
 				lat: {entry.location[1]}
 			</Typography>
 			<RenderIf isTrue={!isDeleteMode}>
-				<button
+				<Button
 					type="button"
 					variant="smallDo"
 					onClick={() => {
-						toggleDeleteMode();
+						toggleMode(isDeleteMode, setDeleteMode);
 					}}
 				>
 					X
-				</button>
+				</Button>
 			</RenderIf>
 			<RenderIf isTrue={isDeleteMode}>
 				<Button
@@ -43,14 +43,26 @@ export default function Entry({ entry, index }) {
 				>
 					Unwiederruflich Löschen
 				</Button>
-				<button
+				<Button
 					type="button"
 					onClick={() => {
-						toggleDeleteMode();
+						toggleMode(isDeleteMode, setDeleteMode);
 					}}
 				>
 					Abbrechen
-				</button>
+				</Button>
+			</RenderIf>
+			<Button
+				type="button"
+				variant="smallDo"
+				onClick={() => {
+					toggleMode(isEditMode, setEditMode);
+				}}
+			>
+				✎
+			</Button>
+			<RenderIf isTrue={isEditMode}>
+				<EntryCreateForm entryEdit={entry} />
 			</RenderIf>
 		</StyledEntry>
 	);
