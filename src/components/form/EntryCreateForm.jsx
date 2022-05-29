@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useStore from '../../lib/store/useStore';
-import { toggleMode } from '../../lib/helpers/toggleFunctions';
+import RenderIf from '../global/RenderIf';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
 import Input from '../ui/form/InputEntry.styled';
 
-export default function EntryCreateForm({ entryEdit }) {
+export default function EntryCreateForm({ entryEdit, toggleEditMode }) {
 	let initInputState = {};
 	if (entryEdit) {
 		initInputState = {
+			id: entryEdit.id,
+			isAlive: entryEdit.isAlive,
 			nameValue: entryEdit.name,
 			numberValue: entryEdit.number,
 			topographyValue: entryEdit.topography,
@@ -25,13 +27,15 @@ export default function EntryCreateForm({ entryEdit }) {
 		};
 	}
 	const editEntry = useStore(state => state.editEntry);
-	const isEditMode = useStore(state => state.isEditMode);
-	const setEditMode = useStore(state => state.setEditMode);
+
 	const addEntry = useStore(state => state.addEntry);
 	const [entryInput, setEntryInput] = useState(initInputState);
 	const [isAlive, setIsAlive] = useState('alive');
 	const currentLocation = useStore(state => state.currentLocation);
 
+	useEffect(() => {
+		setEntryInput;
+	}, [setEntryInput]);
 	const handleChange = event => {
 		setIsAlive(event.target.value);
 	};
@@ -48,8 +52,8 @@ export default function EntryCreateForm({ entryEdit }) {
 		event.preventDefault();
 		if (entryEdit.name) {
 			console.log('-------------------------------------', entryEdit);
-			await editEntry(entryEdit, entryEdit.id);
-			toggleMode(isEditMode, setEditMode);
+			await editEntry(entryInput, entryInput.id);
+			toggleEditMode();
 		} else {
 			addEntry(entryInput, isAlive, date, currentLocation);
 			alert('Erfolgreich in dein Feldtagebuch eingetragen');
@@ -156,6 +160,11 @@ export default function EntryCreateForm({ entryEdit }) {
 					}}
 				/>
 			</label>
+
+			<RenderIf isTrue={entryEdit}>
+				<Input name="location" value={entryInput.location} />
+				<Input name="date" value={entryInput.date} />
+			</RenderIf>
 
 			<button type="submit" variant="submit">
 				Eintrag Erstellen
