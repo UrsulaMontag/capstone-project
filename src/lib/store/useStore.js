@@ -58,13 +58,26 @@ const useStore = create(set => {
 			);
 		},
 		isDeleteMode: false,
-		setDeleteMode: () => {
-			set({ isDeleteMode: true });
+		setDeleteMode: index => {
+			set(
+				produce(draft => {
+					if (index !== -1) {
+						draft.entries[index].isDeleteMode = !draft.entries[index].isDeleteMode;
+					}
+				})
+			);
 		},
 		isEditMode: false,
-		setEditMode: () => {
-			set({ isEditMode: true });
+		setEditMode: index => {
+			set(
+				produce(draft => {
+					if (index !== -1) {
+						draft.entries[index].isEditMode = !draft.entries[index].isEditMode;
+					}
+				})
+			);
 		},
+
 		deleteEntry: index => {
 			set(
 				produce(draft => {
@@ -77,12 +90,13 @@ const useStore = create(set => {
 			set(
 				produce(draft => {
 					return {
-						entries: draft.entries.map(
-							entry =>
-								entry.id === id && {
-									...data,
-									...entry,
-								}
+						entries: draft.entries.map(entry =>
+							entry.id === id
+								? {
+										...data,
+										...entry,
+								  }
+								: entry
 						),
 					};
 				})
