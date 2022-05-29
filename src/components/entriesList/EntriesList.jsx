@@ -4,7 +4,6 @@ import { StyledList } from '../ui/ListEntries.styled';
 
 export default function EntriesList() {
 	const entries = useStore(state => state.entries);
-	console.log(entries);
 
 	return (
 		<StyledList>

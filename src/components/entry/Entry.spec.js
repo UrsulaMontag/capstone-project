@@ -22,9 +22,11 @@ describe('Entry', () => {
 		const name = screen.queryByText(/Feuersalamander/i);
 		const location1 = screen.queryByText(/48.745537999999996/i);
 		const location2 = screen.queryByText(/9.4452515/i);
+		const deleteButton = screen.queryByRole('button', { name: /X/i });
 
 		expect(name).toBeInTheDocument();
 		expect(location1).toBeInTheDocument();
 		expect(location2).toBeInTheDocument();
+		expect(deleteButton).toBeInTheDocument();
 	});
 });
