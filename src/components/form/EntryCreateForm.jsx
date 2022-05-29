@@ -1,41 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useStore from '../../lib/store/useStore';
-import RenderIf from '../global/RenderIf';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
 import Input from '../ui/form/InputEntry.styled';
 
-export default function EntryCreateForm({ entryEdit, toggleEditMode }) {
-	let initInputState = {};
-	if (entryEdit) {
-		initInputState = {
-			id: entryEdit.id,
-			isAlive: entryEdit.isAlive,
-			nameValue: entryEdit.name,
-			numberValue: entryEdit.number,
-			topographyValue: entryEdit.topography,
-			descriptionValue: entryEdit.description,
-			date: entryEdit.date,
-			location: entryEdit.location,
-		};
-	} else {
-		initInputState = {
-			nameValue: '',
-			numberValue: '',
-			topographyValue: '',
-			descriptionValue: '',
-		};
-	}
-	const editEntry = useStore(state => state.editEntry);
+export default function EntryCreateForm() {
+	const initInputState = {
+		nameValue: '',
+		numberValue: '',
+		topographyValue: '',
+		descriptionValue: '',
+	};
 
 	const addEntry = useStore(state => state.addEntry);
 	const [entryInput, setEntryInput] = useState(initInputState);
 	const [isAlive, setIsAlive] = useState('alive');
 	const currentLocation = useStore(state => state.currentLocation);
 
-	useEffect(() => {
-		setEntryInput;
-	}, [setEntryInput]);
 	const handleChange = event => {
 		setIsAlive(event.target.value);
 	};
@@ -48,18 +29,12 @@ export default function EntryCreateForm({ entryEdit, toggleEditMode }) {
 		setEntryInput(initInputState);
 	};
 
-	const submit = async event => {
+	const submit = event => {
 		event.preventDefault();
-		if (entryEdit.name) {
-			console.log('-------------------------------------', entryEdit);
-			await editEntry(entryInput, entryInput.id);
-			toggleEditMode();
-		} else {
-			addEntry(entryInput, isAlive, date, currentLocation);
-			alert('Erfolgreich in dein Feldtagebuch eingetragen');
-			resetFormState('');
-			event.target.reset();
-		}
+		addEntry(entryInput, isAlive, date, [currentLocation.lat, currentLocation.lng]);
+		alert('Erfolgreich in dein Feldtagebuch eingetragen');
+		resetFormState('');
+		event.target.reset();
 	};
 
 	return (
@@ -160,11 +135,6 @@ export default function EntryCreateForm({ entryEdit, toggleEditMode }) {
 					}}
 				/>
 			</label>
-
-			<RenderIf isTrue={entryEdit}>
-				<Input name="location" value={entryInput.location} />
-				<Input name="date" value={entryInput.date} />
-			</RenderIf>
 
 			<button type="submit" variant="submit">
 				Eintrag Erstellen

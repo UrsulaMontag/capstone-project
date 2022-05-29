@@ -57,48 +57,11 @@ const useStore = create(set => {
 				})
 			);
 		},
-		isDeleteMode: false,
-		setDeleteMode: index => {
-			set(
-				produce(draft => {
-					if (index !== -1) {
-						draft.entries[index].isDeleteMode = !draft.entries[index].isDeleteMode;
-					}
-				})
-			);
-		},
-		isEditMode: false,
-		setEditMode: index => {
-			set(
-				produce(draft => {
-					if (index !== -1) {
-						draft.entries[index].isEditMode = !draft.entries[index].isEditMode;
-					}
-				})
-			);
-		},
 
 		deleteEntry: index => {
 			set(
 				produce(draft => {
 					draft.entries.splice(index, 1);
-				})
-			);
-		},
-		editEntry: (data, id) => {
-			console.log(data, id);
-			set(
-				produce(draft => {
-					return {
-						entries: draft.entries.map(entry =>
-							entry.id === id
-								? {
-										...data,
-										...entry,
-								  }
-								: entry
-						),
-					};
 				})
 			);
 		},
