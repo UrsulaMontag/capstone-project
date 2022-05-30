@@ -57,7 +57,10 @@ const useStore = create(set => {
 				})
 			);
 		},
-
+		deleteMode: false,
+		setDeleteMode: deleteMode => {
+			set({ deleteMode });
+		},
 		deleteEntry: index => {
 			set(
 				produce(draft => {

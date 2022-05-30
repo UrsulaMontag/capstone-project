@@ -1,14 +1,16 @@
 import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
 import useStore from '../../lib/store/useStore';
-import RenderIf from '../global/RenderIf';
 import Button from '../ui/Button.styled';
-import { useState } from 'react';
-import { toggleMode } from '../../lib/helpers/toggleFunctions';
 
 export default function Entry({ entry, index }) {
-	const [isDeleteMode, setIsDeleteMode] = useState(false);
+	const isDeleteMode = useStore(state => state.deleteMode);
+	const setDeleteMode = useStore(state => state.setDeleteMode);
 	const deleteEntry = useStore(state => state.deleteEntry);
+
+	const toggleDeleteMode = () => {
+		setDeleteMode(!isDeleteMode);
+	};
 
 	return (
 		<StyledEntry>
@@ -19,36 +21,37 @@ export default function Entry({ entry, index }) {
 				lng: {entry.location[0]} <br />
 				lat: {entry.location[1]}
 			</Typography>
-			<RenderIf isTrue={!isDeleteMode}>
+			{!isDeleteMode ? (
 				<Button
 					type="button"
 					variant="smallDo"
 					onClick={() => {
-						toggleMode(isDeleteMode, setIsDeleteMode);
+						toggleDeleteMode();
 					}}
 				>
 					X
 				</Button>
-			</RenderIf>
-			<RenderIf isTrue={isDeleteMode}>
-				<Button
-					type="button"
-					variant="warning"
-					onClick={() => {
-						deleteEntry(index);
-					}}
-				>
-					Unwiderruflich Löschen
-				</Button>
-				<Button
-					type="button"
-					onClick={() => {
-						toggleMode(isDeleteMode, setIsDeleteMode);
-					}}
-				>
-					Abbrechen
-				</Button>
-			</RenderIf>
+			) : (
+				<>
+					<Button
+						type="button"
+						variant="warning"
+						onClick={() => {
+							deleteEntry(index);
+						}}
+					>
+						Unwiderruflich Löschen
+					</Button>
+					<Button
+						type="button"
+						onClick={() => {
+							toggleDeleteMode();
+						}}
+					>
+						Abbrechen
+					</Button>
+				</>
+			)}
 		</StyledEntry>
 	);
 }
