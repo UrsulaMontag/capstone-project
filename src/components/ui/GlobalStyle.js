@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     --button-bg-color--hover: #adbf2b80;
     --color-dark: #1d3041;
     --shadow: #1d304160;
-    --color-warning-red: #D9043D;
+    --color-warning-red: #EB589C;
       }
   
 `;
