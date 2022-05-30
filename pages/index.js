@@ -1,5 +1,10 @@
 import LandingPage from '../src/components/home/LandingPage';
+import Box from '../src/components/ui/MainBox.styled';
 
 export default function Home() {
-	return <LandingPage />;
+	return (
+		<Box>
+			<LandingPage />
+		</Box>
+	);
 }

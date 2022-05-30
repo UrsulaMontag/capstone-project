@@ -4,7 +4,7 @@ import Typography from '../ui/Typography';
 
 export default function LandingPage() {
 	return (
-		<main>
+		<>
 			<HomeImageBox>
 				<Image
 					src="/homepic.png"
@@ -15,6 +15,6 @@ export default function LandingPage() {
 				/>
 			</HomeImageBox>
 			<Typography variant="h1">RarelyTrackDown</Typography>
-		</main>
+		</>
 	);
 }

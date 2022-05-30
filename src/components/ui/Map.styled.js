@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledMap = styled.div`
-	height: 30rem;
-	max-width: 40rem;
+	height: 100vh;
+	max-width: 100%;
 
-	margin: 2rem;
+	margin: auto;
 `;
