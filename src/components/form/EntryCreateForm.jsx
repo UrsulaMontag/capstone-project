@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import useStore from '../../lib/store/useStore';
 import Fieldset from '../ui/form/Fieldset.styled';
@@ -24,13 +25,14 @@ export default function EntryCreateForm() {
 		setIsAlive('alive');
 		setEntryInput(initInputState);
 	};
-
+	const router = useRouter();
 	const submit = event => {
 		event.preventDefault();
 		addEntry(entryInput, isAlive);
 		alert('Erfolgreich in dein Feldtagebuch eingetragen');
 		resetFormState('');
 		event.target.reset();
+		router.push('/entries');
 	};
 
 	return (
