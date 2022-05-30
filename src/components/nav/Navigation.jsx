@@ -1,25 +1,22 @@
 import Link from 'next/link';
-import SVGIcon from '../basics/SVGIcons';
 
 export default function Navigation() {
 	return (
 		<>
 			<Link passHref href="/">
-				<span>
-					<SVGIcon variant="home" color="var(--dark-lilac)" />
-				</span>
+				home
 			</Link>
 
 			<Link passHref href="/map">
-				Products
+				Map
 			</Link>
 
 			<Link passHref href="/create-entry">
-				Categories
+				Create-Entrie
 			</Link>
 
 			<Link passHref href="/entries">
-				Add Products
+				Entries
 			</Link>
 		</>
 	);
