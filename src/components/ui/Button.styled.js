@@ -16,7 +16,7 @@ const Button = styled.button`
 		variant == 'warning' &&
 		css`
 			color: var(--color-warning-red);
-			::hover {
+			:hover {
 				border: 3px solid var(--color-warning-red);
 			}
 		`};
@@ -32,6 +32,10 @@ const Button = styled.button`
 	:hover {
 		background: var(--button-bg-color--hover);
 		border: 2px solid var(--main-bg-color);
+	}
+	:active {
+		box-shadow: none;
+		filter: none;
 	}
 `;
 
