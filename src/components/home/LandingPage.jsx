@@ -9,8 +9,9 @@ export default function LandingPage() {
 				<Image
 					src="/homepic.png"
 					alt="fire salamander on hand"
-					layout="fill"
-					//objectFit="cover"
+					width="400"
+					height="510"
+					layout="responsive"
 				/>
 			</HomeImageBox>
 			<Typography variant="h1">RarelyTrackDown</Typography>
