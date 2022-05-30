@@ -4,13 +4,8 @@ import useStore from '../../lib/store/useStore';
 import Button from '../ui/Button.styled';
 
 export default function Entry({ entry, index }) {
-	const isDeleteMode = useStore(state => state.deleteMode);
 	const setDeleteMode = useStore(state => state.setDeleteMode);
 	const deleteEntry = useStore(state => state.deleteEntry);
-
-	const toggleDeleteMode = () => {
-		setDeleteMode(!isDeleteMode);
-	};
 
 	return (
 		<StyledEntry>
@@ -21,12 +16,12 @@ export default function Entry({ entry, index }) {
 				lng: {entry.location[0]} <br />
 				lat: {entry.location[1]}
 			</Typography>
-			{!isDeleteMode ? (
+			{!entry.deleteMode ? (
 				<Button
 					type="button"
 					variant="smallDo"
 					onClick={() => {
-						toggleDeleteMode();
+						setDeleteMode(index);
 					}}
 				>
 					X
@@ -45,7 +40,7 @@ export default function Entry({ entry, index }) {
 					<Button
 						type="button"
 						onClick={() => {
-							toggleDeleteMode();
+							setDeleteMode(index);
 						}}
 					>
 						Abbrechen

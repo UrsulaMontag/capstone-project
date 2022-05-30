@@ -18,6 +18,7 @@ const useStore = create(set => {
 				number: 3,
 				topography: 'Steinhaufen hinter Haus',
 				descripcion: 'Drei muntere Salamander am Stammplatz unter dem Steinhaufen.',
+				deleteMode: false,
 			},
 			{
 				id: 2,
@@ -28,6 +29,7 @@ const useStore = create(set => {
 				number: 1,
 				topography: 'Asphaltweg am Waldrand, Schulweg',
 				descripcion: 'Großes, stattliches Männchen. Lief quer über den Weg zum Wald.',
+				deleteMode: false,
 			},
 			{
 				id: 3,
@@ -39,6 +41,7 @@ const useStore = create(set => {
 				topography: 'Unterer Balkeshauweg, Tümpel am Wegrand unter Forstfläche',
 				descripcion:
 					'Ein Wimmelbecken an Molchen. Bestimmt noch andere Arten hier vorhanden. Fadenwürmer im selben Tümpel.',
+				deleteMode: false,
 			},
 		],
 		addEntry: (entry, alive, date, location) => {
@@ -58,8 +61,14 @@ const useStore = create(set => {
 			);
 		},
 		deleteMode: false,
-		setDeleteMode: deleteMode => {
-			set({ deleteMode });
+		setDeleteMode: index => {
+			set(
+				produce(draft => {
+					if (index !== -1) {
+						draft.entries[index].deleteMode = !draft.entries[index].deleteMode;
+					}
+				})
+			);
 		},
 		deleteEntry: index => {
 			set(
