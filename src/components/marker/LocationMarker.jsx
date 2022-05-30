@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Marker, Popup, useMapEvents } from 'react-leaflet';
-import useStore from '../../lib/useStore';
+import useStore from '../../lib/store/useStore';
 
 export default function LocationMarker() {
 	const addLocation = useStore(state => state.addLocation);

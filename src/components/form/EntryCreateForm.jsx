@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useStore from '../../lib/useStore';
+import useStore from '../../lib/store/useStore';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
 import Input from '../ui/form/InputEntry.styled';
@@ -11,18 +11,14 @@ export default function EntryCreateForm() {
 		topographyValue: '',
 		descriptionValue: '',
 	};
+
 	const addEntry = useStore(state => state.addEntry);
 	const [entryInput, setEntryInput] = useState(initInputState);
 	const [isAlive, setIsAlive] = useState('alive');
-	const currentLocation = useStore(state => state.currentLocation);
 
 	const handleChange = event => {
 		setIsAlive(event.target.value);
-		console.log(event.target.value);
 	};
-
-	const current = new Date();
-	const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
 
 	const resetFormState = () => {
 		setIsAlive('alive');
@@ -31,9 +27,8 @@ export default function EntryCreateForm() {
 
 	const submit = event => {
 		event.preventDefault();
-		console.log(currentLocation);
-		addEntry(entryInput, isAlive, date, [currentLocation.lat, currentLocation.lng]);
-		alert('Erfolgreich in dein Feldtagebuch eingetragen 🐜');
+		addEntry(entryInput, isAlive);
+		alert('Erfolgreich in dein Feldtagebuch eingetragen');
 		resetFormState('');
 		event.target.reset();
 	};
@@ -63,8 +58,8 @@ export default function EntryCreateForm() {
 					lebend{' '}
 					<input
 						type="radio"
-						value="alive"
-						checked={isAlive === 'alive'}
+						value="true"
+						checked={isAlive === 'true'}
 						name="isAlive"
 						variant="radio"
 						onChange={handleChange}
@@ -74,9 +69,9 @@ export default function EntryCreateForm() {
 					tot{' '}
 					<input
 						type="radio"
-						checked={isAlive === 'dead'}
+						checked={isAlive === 'false'}
 						name="isAlive"
-						value="dead"
+						value="false"
 						variant="radio"
 						onChange={handleChange}
 					/>

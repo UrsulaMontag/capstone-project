@@ -1,5 +1,5 @@
 import { Marker, Popup } from 'react-leaflet';
-import useStore from '../../lib/useStore.js';
+import useStore from '../../lib/store/useStore.js';
 
 export default function EntryMarker() {
 	const entries = useStore(state => state.entries);

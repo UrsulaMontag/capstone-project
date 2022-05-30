@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledEntry = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 	max-width: 40rem;
 	padding: 2rem;
 	margin: 2rem;
