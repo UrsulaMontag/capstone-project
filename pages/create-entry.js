@@ -2,7 +2,7 @@ import EntryCreateForm from '../src/components/form/EntryCreateForm';
 import Box from '../src/components/ui/MainBox.styled';
 import Typography from '../src/components/ui/Typography';
 import dynamic from 'next/dynamic';
-import { StyledMap } from '../src/components/ui/Map.styled';
+import SmallMap from '../src/components/ui/MapSmall.styled';
 const MapWithNoSSR = dynamic(() => import('../src/components/map/Map'), {
 	ssr: false,
 });
@@ -21,9 +21,9 @@ export default function CreateEntry() {
 					du in Ruhe zu Haus erledigen.
 				</Typography>
 			</Box>
-			<StyledMap variant="small-widow">
+			<SmallMap>
 				<MapWithNoSSR />
-			</StyledMap>
+			</SmallMap>
 			<Box>
 				<EntryCreateForm />
 			</Box>

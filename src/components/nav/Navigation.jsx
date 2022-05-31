@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import NavBottom from '../ui/Navigation.styled';
 
 export default function Navigation() {
 	return (
-		<>
+		<NavBottom>
 			<Link passHref href="/">
 				home
 			</Link>
@@ -12,12 +13,12 @@ export default function Navigation() {
 			</Link>
 
 			<Link passHref href="/create-entry">
-				Create-Entrie
+				Create-Entry
 			</Link>
 
 			<Link passHref href="/entries">
 				Entries
 			</Link>
-		</>
+		</NavBottom>
 	);
 }
