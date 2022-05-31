@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledEntryForm = styled.form`
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: 3.5rem;
 	max-width: 40rem;
 	margin: 2rem;
 	padding: 2rem;
