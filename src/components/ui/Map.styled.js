@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
-export const StyledMap = styled.div`
-	height: 30rem;
-	max-width: 40rem;
+const StyledMap = styled.section`
+	border: 2px solid var(--main-bg-color-full);
+	box-shadow: 4px -3px;
+	border-radius: 20px;
 
-	margin: 2rem;
+	height: 90vh;
+	max-width: 100%;
+	z-index: 10;
 `;
+export default StyledMap;

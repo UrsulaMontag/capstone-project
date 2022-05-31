@@ -15,9 +15,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-      font-size: 1.6rem
-    }
-
+      font-size: 1.6rem;
+      position: relative;
+  }
   :root {
     --main-bg-color: #a6727260;
     --main-bg-color-full: #a67272;

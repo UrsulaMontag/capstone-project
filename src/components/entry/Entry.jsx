@@ -13,8 +13,8 @@ export default function Entry({ entry, index }) {
 			<Typography variant="body1">{entry.name}</Typography>
 			<Typography variant="h3">Place:</Typography>
 			<Typography variant="body1">
-				lng: {entry.location[0]} <br />
-				lat: {entry.location[1]} <br />
+				lng: {entry?.location[0]} <br />
+				lat: {entry?.location[1]} <br />
 				date: {entry.date}
 			</Typography>
 			{!entry.deleteMode ? (
