@@ -6,7 +6,7 @@ const MapWithNoSSR = dynamic(() => import('../src/components/map/Map'), {
 
 export default function Map() {
 	return (
-		<StyledMap>
+		<StyledMap variant="whole-window">
 			<MapWithNoSSR />
 		</StyledMap>
 	);
