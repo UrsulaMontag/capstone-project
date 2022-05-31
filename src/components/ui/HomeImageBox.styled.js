@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const HomeImageBox = styled.figure`
-	width: 80vw;
+	width: 80%;
 	height: auto;
 	border-radius: 60px;
 	overflow: hidden;

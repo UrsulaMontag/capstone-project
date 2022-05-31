@@ -14,7 +14,7 @@ export default function LandingPage() {
 					layout="responsive"
 				/>
 			</HomeImageBox>
-			<Typography variant="h1">RarelyTrackDown</Typography>
+			<Typography variant="h1">Rare-Traces</Typography>
 		</>
 	);
 }
