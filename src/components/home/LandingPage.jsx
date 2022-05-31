@@ -9,8 +9,8 @@ export default function LandingPage() {
 				<Image
 					src="/homepic.png"
 					alt="fire salamander on hand"
-					width="400"
-					height="510"
+					width="1078"
+					height="903"
 					layout="responsive"
 				/>
 			</HomeImageBox>
