@@ -4,7 +4,7 @@ import Typography from '../src/components/ui/Typography';
 
 export default function Entries() {
 	return (
-		<Box>
+		<Box variant="cardList">
 			<Typography variant="h2">Deine Entdeckungen</Typography>
 			<EntriesList />
 		</Box>

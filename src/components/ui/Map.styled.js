@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const StyledMap = styled.section`
-	margin: auto;
 	border: 2px solid var(--main-bg-color-full);
 	box-shadow: 4px -3px;
 	border-radius: 20px;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Box = styled.section`
 	display: flex;
@@ -9,6 +9,12 @@ const Box = styled.section`
 	width: 100%;
 	max-height: 100vh;
 	background: var(--main-bg-color);
+	${({ variant }) =>
+		variant == 'text' &&
+		css`
+			padding: 2rem;
+		}
+		`};
 `;
 
 export default Box;

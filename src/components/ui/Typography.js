@@ -46,6 +46,7 @@ const StyledH1 = styled.h1`
 	background: ${({ background }) => background};
 `;
 const StyledH2 = styled.h2`
+	margin-top: 1rem;
 	color: var(--text-color-dark);
 	font-size: 2.2rem;
 `;

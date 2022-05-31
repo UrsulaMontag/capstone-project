@@ -4,7 +4,7 @@ const StyledEntryForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 3.5rem;
-	max-width: 40rem;
+	max-width: 90vw;
 	margin: 2rem;
 	padding: 2rem;
 
