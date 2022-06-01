@@ -21,6 +21,6 @@ export default async function handler(req, res) {
 			entry: newEntry,
 		});
 	} else {
-		res.status(400).json({ error: 'wrong method' });
+		res.status(405).json({ error: 'wrong method' });
 	}
 }

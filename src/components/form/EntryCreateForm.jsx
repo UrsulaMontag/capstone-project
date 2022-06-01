@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import useStore from '../../lib/store/useStore';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
@@ -20,28 +20,45 @@ export default function EntryCreateForm() {
 	const handleChange = event => {
 		setIsAlive(event.target.value);
 	};
-
 	const current = new Date();
 	const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
 
+	React.useEffect(() => {
+		if (router.isReady) {
+			setEntryInput({
+				...entryInput,
+				date: router.query.date,
+				location: router.query.location,
+				nameValue: router.query.nameValue,
+				isAlive: router.query.isAlive,
+				numberValue: router.query.numberValue,
+				topographyValue: router.query.topographyValue,
+				descriptionValue: router.query.descriptionValue,
+			});
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [router.isReady]);
 	const submit = async event => {
 		event.preventDefault();
-
-		const response = await fetch('/api/entry/create', {
-			method: 'POST',
-			body: JSON.stringify({
-				date: date,
-				location: [currentLocation.lat, currentLocation.lng],
-				name: entryInput.nameValue,
-				isAlive: isAlive,
-				number: entryInput.numberValue ? entryInput.numberValue : null,
-				topography: entryInput.topographyValue ? entryInput.topographyValue : null,
-				description: entryInput.descriptionValue ? entryInput.descriptionValue : null,
-			}),
-		});
-		console.log(await response.json());
-		alert('Erfolgreich in dein Feldtagebuch eingetragen');
-		router.push('/entries');
+		if (!router.query.idValue) {
+			const response = await fetch('/api/entry/create', {
+				method: 'POST',
+				body: JSON.stringify({
+					date: date,
+					location: [currentLocation.lat, currentLocation.lng],
+					name: entryInput.nameValue,
+					isAlive: isAlive,
+					number: entryInput.numberValue ? entryInput.numberValue : null,
+					topography: entryInput.topographyValue ? entryInput.topographyValue : null,
+					description: entryInput.descriptionValue ? entryInput.descriptionValue : null,
+				}),
+			});
+			console.log(await response.json());
+			alert('Erfolgreich in dein Feldtagebuch eingetragen');
+			router.push('/entries');
+		} else {
+			router.push('/edit-entry');
+		}
 	};
 
 	return (
