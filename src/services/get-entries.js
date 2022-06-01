@@ -1,5 +1,5 @@
 import Entry from '../models/Entry';
-import { dbConnect } from '../lib/database';
+import { dbConnect } from '../lib/db/database';
 
 export default async function getEntries() {
 	await dbConnect();
@@ -7,7 +7,7 @@ export default async function getEntries() {
 	const entries = await Entry.find();
 	console.log('get-Entries: ', entries);
 
-	return entries.map(({ id, date, location, name, isAlive, number, typography, description }) => {
+	return entries.map(({ id, date, location, name, isAlive, number, topography, description }) => {
 		return {
 			id,
 			date,
@@ -15,7 +15,7 @@ export default async function getEntries() {
 			name,
 			isAlive,
 			number,
-			typography,
+			topography,
 			description,
 		};
 	});

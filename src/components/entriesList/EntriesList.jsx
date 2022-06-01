@@ -1,9 +1,14 @@
-import useStore from '../../lib/store/useStore';
+import useSWR from 'swr';
 import Entry from '../entry/Entry';
 import { StyledList } from '../ui/ListEntries.styled';
 
 export default function EntriesList() {
-	const entries = useStore(state => state.entries);
+	//const entries = useStore(state => state.entries);
+	const { data: entries, errorEntries } = useSWR('/api/entries');
+
+	if (errorEntries) {
+		return <h3>Error: {errorEntries.message}</h3>;
+	}
 
 	return (
 		<StyledList>

@@ -6,7 +6,7 @@ const entrySchema = new mongoose.Schema({
 	name: String,
 	isAlive: Boolean,
 	number: String,
-	typography: String,
+	topography: String,
 	description: String,
 	//category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
 });
