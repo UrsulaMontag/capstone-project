@@ -6,9 +6,7 @@
     "isAlive": "true",
     "number": "3",
     "topography": "Steinhaufen hinter Haus",
-    "description": "Drei muntere Salamander am Stammplatz unter dem Steinhaufen.",
-    "deleteMode": false,
-    "editMode": false
+    "description": "Drei muntere Salamander am Stammplatz unter dem Steinhaufen."
   },
   {
     "date": "2022-11-05",
@@ -17,9 +15,7 @@
     "isAlive": "true",
     "number": "1",
     "topography": "Asphaltweg am Waldrand, Schulweg",
-    "description": "Großes, stattliches Männchen. Lief quer über den Weg zum Wald.",
-    "deleteMode": false,
-    "editMode": false
+    "description": "Großes, stattliches Männchen. Lief quer über den Weg zum Wald."
   },
   {
     "date": "2022-11-05",
@@ -28,8 +24,6 @@
     "isAlive": "true",
     "number": "8",
     "topography": "Unterer Balkeshauweg, Tümpel am Wegrand unter Forstfläche",
-    "description": "Ein Wimmelbecken an Molchen. Bestimmt noch andere Arten hier vorhanden. Fadenwürmer im selben Tümpel.",
-    "deleteMode": false,
-    "editMode": false
+    "description": "Ein Wimmelbecken an Molchen. Bestimmt noch andere Arten hier vorhanden. Fadenwürmer im selben Tümpel."
   }
 ]

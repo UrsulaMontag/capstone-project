@@ -37,8 +37,6 @@ export default function EntryCreateForm() {
 				number: entryInput.numberValue ? entryInput.numberValue : null,
 				topography: entryInput.topographyValue ? entryInput.topographyValue : null,
 				description: entryInput.descriptionValue ? entryInput.descriptionValue : null,
-				deleteMode: false,
-				editMode: false,
 			}),
 		});
 		console.log(await response.json());

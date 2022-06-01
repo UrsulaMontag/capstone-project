@@ -7,8 +7,8 @@ export default async function getEntries() {
 	const entries = await Entry.find();
 	console.log('get-Entries: ', entries);
 
-	return entries.map(
-		({
+	return entries.map(({ id, date, location, name, isAlive, number, topography, description }) => {
+		return {
 			id,
 			date,
 			location,
@@ -17,21 +17,6 @@ export default async function getEntries() {
 			number,
 			topography,
 			description,
-			deleteMode,
-			editMode,
-		}) => {
-			return {
-				id,
-				date,
-				location,
-				name,
-				isAlive,
-				number,
-				topography,
-				description,
-				deleteMode,
-				editMode,
-			};
-		}
-	);
+		};
+	});
 }

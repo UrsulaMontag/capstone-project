@@ -14,8 +14,6 @@ export default async function handler(req, res) {
 			number: newEntryData.number,
 			topography: newEntryData.topography,
 			description: newEntryData.description,
-			deleteMode: false,
-			editMode: false,
 		});
 
 		res.status(200).json({
