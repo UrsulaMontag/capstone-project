@@ -1,11 +1,14 @@
 import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
-import useStore from '../../lib/store/useStore';
+//import useStore from '../../lib/store/useStore';
 import Button from '../ui/Button.styled';
+import { useSWRConfig } from 'swr';
+import { useState } from 'react';
 
-export default function Entry({ entry, index }) {
-	const setDeleteMode = useStore(state => state.setDeleteMode);
-	const deleteEntry = useStore(state => state.deleteEntry);
+export default function Entry({ entry }) {
+	//const setDeleteMode = useStore(state => state.setISDeleteMode);
+	const [isDeleteMode, setIsDeleteMode] = useState(false);
+	const { mutate } = useSWRConfig();
 
 	return (
 		<StyledEntry>
@@ -17,12 +20,12 @@ export default function Entry({ entry, index }) {
 				lat: {entry?.location[1]} <br />
 				date: {entry.date}
 			</Typography>
-			{!entry.deleteMode ? (
+			{!isDeleteMode ? (
 				<Button
 					type="button"
 					variant="smallDo"
 					onClick={() => {
-						setDeleteMode(index);
+						setIsDeleteMode(!isDeleteMode);
 					}}
 				>
 					X
@@ -30,10 +33,14 @@ export default function Entry({ entry, index }) {
 			) : (
 				<>
 					<Button
-						type="button"
 						variant="warning"
-						onClick={() => {
-							deleteEntry(index);
+						type="button"
+						onClick={async () => {
+							const response = await fetch('/api/entry/' + entry.id, {
+								method: 'DELETE',
+							});
+							console.log(await response.json());
+							mutate('/api/entries');
 						}}
 					>
 						Unwiderruflich Löschen
@@ -41,7 +48,7 @@ export default function Entry({ entry, index }) {
 					<Button
 						type="button"
 						onClick={() => {
-							setDeleteMode(index);
+							setIsDeleteMode(!isDeleteMode);
 						}}
 					>
 						Abbrechen

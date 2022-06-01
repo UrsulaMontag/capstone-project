@@ -12,26 +12,37 @@ export default function EntryCreateForm() {
 		topographyValue: '',
 		descriptionValue: '',
 	};
-
-	const addEntry = useStore(state => state.addEntry);
 	const [entryInput, setEntryInput] = useState(initInputState);
 	const [isAlive, setIsAlive] = useState('alive');
+	const currentLocation = useStore(state => state.currentLocation);
+	const router = useRouter();
 
 	const handleChange = event => {
 		setIsAlive(event.target.value);
 	};
 
-	const resetFormState = () => {
-		setIsAlive('alive');
-		setEntryInput(initInputState);
-	};
-	const router = useRouter();
-	const submit = event => {
+	const current = new Date();
+	const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
+
+	const submit = async event => {
 		event.preventDefault();
-		addEntry(entryInput, isAlive);
+
+		const response = await fetch('/api/entry/create', {
+			method: 'POST',
+			body: JSON.stringify({
+				date: date,
+				location: [currentLocation.lat, currentLocation.lng],
+				name: entryInput.nameValue,
+				isAlive: isAlive,
+				number: entryInput.numberValue ? entryInput.numberValue : null,
+				topography: entryInput.topographyValue ? entryInput.topographyValue : null,
+				description: entryInput.descriptionValue ? entryInput.descriptionValue : null,
+				deleteMode: false,
+				editMode: false,
+			}),
+		});
+		console.log(await response.json());
 		alert('Erfolgreich in dein Feldtagebuch eingetragen');
-		resetFormState('');
-		event.target.reset();
 		router.push('/entries');
 	};
 
@@ -59,6 +70,7 @@ export default function EntryCreateForm() {
 				<label>
 					lebend{' '}
 					<input
+						required
 						type="radio"
 						value="true"
 						checked={isAlive === 'true'}

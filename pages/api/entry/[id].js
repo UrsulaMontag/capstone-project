@@ -1,5 +1,5 @@
 import Entry from '../../../src/models/Entry';
-import { dbConnect } from '../../../src/lib/database';
+import { dbConnect } from '../../../src/lib/db/database';
 
 export default async function handler(req, res) {
 	const { id } = req.query;

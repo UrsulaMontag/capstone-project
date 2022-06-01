@@ -8,6 +8,8 @@ const entrySchema = new mongoose.Schema({
 	number: String,
 	topography: String,
 	description: String,
+	deleteMode: Boolean,
+	editMode: Boolean,
 	//category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
 });
 const Product = mongoose.models?.Entry ?? mongoose.model('Entry', entrySchema);
