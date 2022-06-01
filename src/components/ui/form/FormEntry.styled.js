@@ -8,8 +8,8 @@ const StyledEntryForm = styled.form`
 	margin: 2rem;
 	padding: 2rem;
 
-	background-color: var(--main-bg-color);
-	border: 2px solid var(--main-bg-color-full);
+	background-color: var(--bg-color-light);
+	border: 2px solid var(--main-bg-color);
 	box-shadow: 4px -3px;
 `;
 export default StyledEntryForm;

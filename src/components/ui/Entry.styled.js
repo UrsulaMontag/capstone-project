@@ -9,7 +9,8 @@ export const StyledEntry = styled.div`
 	padding: 2rem;
 	margin: 3rem 0;
 
-	background-color: var(--main-bg-color);
-	border: 1px solid var(--main-bg-color-full);
+	overfow: hidden;
+	background-color: var(--bg-color-light);
+	border: 1px solid var(--main-bg-color);
 	box-shadow: 4px -3px;
 `;
