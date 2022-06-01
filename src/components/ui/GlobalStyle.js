@@ -19,14 +19,15 @@ const GlobalStyle = createGlobalStyle`
       position: relative;
   }
   :root {
-    --main-bg-color: #a6727260;
+    --main-bg-color: #6D76A6;
     --main-bg-color-full: #a67272;
+    --bg-color-light: #A4BF88;
     --text-color-light: #ecf3f9;
     --text-color-dark: #1d3041;
-    --headline-little: #adbf2b;
-    --button-bg-color: #adbf2b;
-    --button-bg-color--hover: #adbf2b80;
-    --color-dark: #1d3041;
+    --headline-little: #54592D;
+    --button-bg-color: #B6D96A;
+    --button-bg-color--hover: #B6D96A80;
+    --color-dark: #54592D;
     --shadow: #1d304160;
     --color-warning-red: #EB589C;
       }
