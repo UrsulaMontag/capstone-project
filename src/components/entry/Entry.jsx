@@ -1,12 +1,10 @@
 import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
-//import useStore from '../../lib/store/useStore';
 import Button from '../ui/Button.styled';
 import { useSWRConfig } from 'swr';
 import { useState } from 'react';
 
 export default function Entry({ entry }) {
-	//const setDeleteMode = useStore(state => state.setISDeleteMode);
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
 	const { mutate } = useSWRConfig();
 

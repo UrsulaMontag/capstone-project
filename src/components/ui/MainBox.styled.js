@@ -7,7 +7,7 @@ const Box = styled.section`
 	justify-content: center;
 	gap: 5rem;
 	width: 100%;
-	max-height: 100vh;
+	min-height: 85vh;
 	background: var(--main-bg-color);
 	${({ variant }) =>
 		variant == 'text' &&

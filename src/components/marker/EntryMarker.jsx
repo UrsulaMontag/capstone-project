@@ -1,8 +1,12 @@
 import { Marker, Popup } from 'react-leaflet';
-import useStore from '../../lib/store/useStore.js';
+import useSWR from 'swr';
 
 export default function EntryMarker() {
-	const entries = useStore(state => state.entries);
+	const { data: entries, errorEntries } = useSWR('/api/entries');
+
+	if (errorEntries) {
+		return <h3>Error: {errorEntries.message}</h3>;
+	}
 	return (
 		<>
 			{entries.map(entry => {
