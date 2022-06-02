@@ -12,7 +12,6 @@ const useStore = create(set => {
 				const response = await fetch('/api/entries');
 				const data = await response.json();
 				set({ entries: data });
-				console.log('--------------------------!!!!!!!!!!!!', data);
 			} catch (error) {
 				console.error(`Upps das war ein Fehler: ${error}`);
 			}
