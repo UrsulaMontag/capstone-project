@@ -1,5 +1,4 @@
 import create from 'zustand';
-import produce from 'immer';
 
 const useStore = create(set => {
 	return {
@@ -7,15 +6,16 @@ const useStore = create(set => {
 		addLocation: currentLocation => {
 			set({ currentLocation });
 		},
-
-		setDeleteMode: index => {
-			set(
-				produce(draft => {
-					if (index !== -1) {
-						draft.entries[index].deleteMode = !draft.entries[index].deleteMode;
-					}
-				})
-			);
+		entries: [],
+		fetchEntries: async () => {
+			try {
+				const response = await fetch('/api/entries');
+				const data = await response.json();
+				set({ entries: data });
+				console.log('--------------------------!!!!!!!!!!!!', data);
+			} catch (error) {
+				console.error(`Upps das war ein Fehler: ${error}`);
+			}
 		},
 	};
 });

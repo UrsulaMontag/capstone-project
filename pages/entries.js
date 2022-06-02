@@ -1,29 +1,14 @@
-import EntriesList from '../src/components/entriesList/EntriesList';
 import Box from '../src/components/ui/MainBox.styled';
 import Typography from '../src/components/ui/Typography';
-import getEntries from '../src/services/get-entries';
-import { SWRConfig } from 'swr';
-import swrFetcher from '../src/lib/db/swr-fetcher';
-
-export async function getStaticProps() {
-	const entries = await getEntries();
-
-	return {
-		props: {
-			fallback: {
-				'/api/entries': entries,
-			},
-		},
-	};
-}
-
-export default function Entries({ fallback }) {
+import dynamic from 'next/dynamic';
+const ListWithNoSSR = dynamic(() => import('../src/components/entriesList/EntriesList'), {
+	ssr: false,
+});
+export default function Entries() {
 	return (
-		<SWRConfig value={{ fetcher: swrFetcher, fallback }}>
-			<Box variant="cardList">
-				<Typography variant="h2">Deine Entdeckungen</Typography>
-				<EntriesList />
-			</Box>
-		</SWRConfig>
+		<Box variant="cardList">
+			<Typography variant="h2">Deine Entdeckungen</Typography>
+			<ListWithNoSSR />
+		</Box>
 	);
 }
