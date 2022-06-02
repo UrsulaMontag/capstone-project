@@ -1,5 +1,18 @@
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import EntryCreateForm from './EntryCreateForm';
+
+jest.mock('next/router', () => ({
+	useRouter() {
+		return {
+			route: '/',
+			pathname: '',
+			query: '',
+			asPath: '',
+		};
+	},
+}));
 
 describe('Form', () => {
 	it('renders three input fields, two radiobuttons in a fieldset,', () => {
