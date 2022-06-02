@@ -13,7 +13,7 @@ export default function EntryCreateForm() {
 		descriptionValue: '',
 	};
 	const [entryInput, setEntryInput] = useState(initInputState);
-	const [isAlive, setIsAlive] = useState('alive');
+	const [isAlive, setIsAlive] = useState('true');
 	const currentLocation = useStore(state => state.currentLocation);
 	const router = useRouter();
 

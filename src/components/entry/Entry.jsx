@@ -1,13 +1,13 @@
 import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
 import Button from '../ui/Button.styled';
-import { useSWRConfig } from 'swr';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import useStore from '../../lib/store/useStore';
 
 export default function Entry({ entry }) {
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
-	const { mutate } = useSWRConfig();
+	const deleteEntry = useStore(state => state.deleteEntry);
 	const router = useRouter();
 
 	return (
@@ -58,12 +58,8 @@ export default function Entry({ entry }) {
 					<Button
 						variant="warning"
 						type="button"
-						onClick={async () => {
-							const response = await fetch('/api/entry/' + entry.id, {
-								method: 'DELETE',
-							});
-							console.log(await response.json());
-							mutate('/api/entries');
+						onClick={() => {
+							deleteEntry(entry.id);
 						}}
 					>
 						Unwiderruflich Löschen
