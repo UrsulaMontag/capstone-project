@@ -38,7 +38,7 @@ export default function Entry({ entry }) {
 							router.push({
 								pathname: '/edit-entry',
 								query: {
-									idValue: entry.id,
+									id: entry.id,
 									date: entry.date,
 									location: entry.location,
 									nameValue: entry.name,

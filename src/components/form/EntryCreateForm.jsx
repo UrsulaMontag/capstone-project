@@ -14,19 +14,21 @@ export default function EntryCreateForm() {
 	};
 	const [entryInput, setEntryInput] = useState(initInputState);
 	const [isAlive, setIsAlive] = useState('true');
-	const currentLocation = useStore(state => state.currentLocation);
 	const router = useRouter();
+	const addEntry = useStore(state => state.addEntry);
+	const editEntry = useStore(state => state.editEntry);
+
+	const currentLocation = useStore(state => state.currentLocation);
 
 	const handleChange = event => {
 		setIsAlive(event.target.value);
 	};
-	const current = new Date();
-	const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
 
 	React.useEffect(() => {
 		if (router.isReady) {
 			setEntryInput({
 				...entryInput,
+				id: router.query.id,
 				date: router.query.date,
 				location: router.query.location,
 				nameValue: router.query.nameValue,
@@ -38,23 +40,14 @@ export default function EntryCreateForm() {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.isReady]);
+
 	const submit = async event => {
 		event.preventDefault();
 		if (!router.query.idValue) {
-			const response = await fetch('/api/entry/create', {
-				method: 'POST',
-				body: JSON.stringify({
-					date: date,
-					location: [currentLocation.lat, currentLocation.lng],
-					name: entryInput.nameValue,
-					isAlive: isAlive,
-					number: entryInput.numberValue ? entryInput.numberValue : null,
-					topography: entryInput.topographyValue ? entryInput.topographyValue : null,
-					description: entryInput.descriptionValue ? entryInput.descriptionValue : null,
-				}),
-			});
-			console.log(await response.json());
-			alert('Erfolgreich in dein Feldtagebuch eingetragen');
+			addEntry(entryInput, isAlive, currentLocation);
+			router.push('/entries');
+		} else if (router.query.idValue) {
+			editEntry(entryInput, isAlive, router);
 			router.push('/entries');
 		} else {
 			router.push('/edit-entry');
