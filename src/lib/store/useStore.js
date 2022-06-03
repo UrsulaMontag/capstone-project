@@ -1,3 +1,4 @@
+import produce from 'immer';
 import create from 'zustand';
 
 const useStore = create(set => {
@@ -48,16 +49,17 @@ const useStore = create(set => {
 				});
 				const newEntry = await response.json();
 
-				set(state => {
-					return {
-						entries: [...state.entries, newEntry],
-					};
-				});
+				set(
+					produce(draft => {
+						draft.entries.push(newEntry);
+					})
+				);
 				alert('Erfolgreich in dein Feldtagebuch eingetragen');
 			} catch (error) {
 				console.error(`Upps das war ein Fehler: ${error}`);
 			}
 		},
+
 		editEntry: async (input, alive, router) => {
 			try {
 				const response = await fetch('/api/product/' + router.query.idValue, {
@@ -74,13 +76,20 @@ const useStore = create(set => {
 				});
 				const editedEntry = await response.json();
 
-				set(state => {
-					return {
-						entries: state.entries.map(entry =>
-							entry.id === input.id ? { ...editedEntry, ...input } : entry
-						),
-					};
-				});
+				set(
+					produce(draft => {
+						const index = draft.entries.findIndex(entry => entry.id === input.id);
+						if (index !== -1) {
+							draft[index].input = editedEntry;
+						}
+					})
+				);
+				// updateTodos(draft => {
+				// 	const index = todos.findIndex(todo => todo.id === id);
+				// 	if (index !== -1) {
+				// 		draft[index].name = name;
+				// 	}
+				// });
 				alert('Erfolgreich editiert und wieder in dein Feldtagebuch eingetragen');
 			} catch (error) {
 				console.error(`Upps das war ein Fehler: ${error}`);

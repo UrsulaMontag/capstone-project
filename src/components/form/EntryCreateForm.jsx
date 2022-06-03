@@ -155,7 +155,7 @@ export default function EntryCreateForm() {
 			</label>
 
 			<button type="submit" variant="submit">
-				Eintrag Erstellen
+				{router.query.nameValue ? 'Korrigieren' : 'Eintrag Erstellen'}
 			</button>
 		</StyledEntryForm>
 	);
