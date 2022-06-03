@@ -7,6 +7,7 @@ import useStore from '../../lib/store/useStore';
 
 export default function Entry({ entry }) {
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
+	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
 	const deleteEntry = useStore(state => state.deleteEntry);
 	const router = useRouter();
 
@@ -35,18 +36,10 @@ export default function Entry({ entry }) {
 						type="button"
 						variant="smallDo"
 						onClick={() => {
+							setEntryToUpdate(entry.id);
+
 							router.push({
 								pathname: '/edit-entry',
-								query: {
-									id: entry.id,
-									date: entry.date,
-									location: entry.location,
-									nameValue: entry.name,
-									isAlive: entry.isAlive,
-									numberValue: entry.number,
-									topographyValue: entry.topography,
-									descriptionValue: entry.description,
-								},
 							});
 						}}
 					>

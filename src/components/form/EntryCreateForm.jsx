@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useStore from '../../lib/store/useStore';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
@@ -17,40 +17,40 @@ export default function EntryCreateForm() {
 	const router = useRouter();
 	const addEntry = useStore(state => state.addEntry);
 	const editEntry = useStore(state => state.editEntry);
-
+	const entryToUpdate = useStore(state => state.entryToUpdate);
 	const currentLocation = useStore(state => state.currentLocation);
+	const oldEntry = entryToUpdate && entryToUpdate[0];
 
 	const handleChange = event => {
 		setIsAlive(event.target.value);
 	};
 
-	React.useEffect(() => {
-		if (router.isReady) {
+	useEffect(() => {
+		if (entryToUpdate) {
 			setEntryInput({
 				...entryInput,
-				id: router.query.id,
-				date: router.query.date,
-				location: router.query.location,
-				nameValue: router.query.nameValue,
-				isAlive: router.query.isAlive,
-				numberValue: router.query.numberValue,
-				topographyValue: router.query.topographyValue,
-				descriptionValue: router.query.descriptionValue,
+				id: oldEntry.id,
+				date: oldEntry.date,
+				location: oldEntry.location,
+				nameValue: oldEntry.name,
+				isAlive: oldEntry.isAlive,
+				numberValue: oldEntry.number,
+				topographyValue: oldEntry.topography,
+				descriptionValue: oldEntry.description,
 			});
+			console.log('-----------------------!!!!!!!!!!!!!!!!!!!!!!', entryToUpdate);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [router.isReady]);
+	}, [entryToUpdate, setEntryInput]);
 
 	const submit = async event => {
 		event.preventDefault();
-		if (!router.query.idValue) {
-			addEntry(entryInput, isAlive, currentLocation);
-			router.push('/entries');
-		} else if (router.query.idValue) {
-			editEntry(entryInput, isAlive, router);
+		if (entryToUpdate) {
+			editEntry(oldEntry.id, { ...entryInput });
 			router.push('/entries');
 		} else {
-			router.push('/edit-entry');
+			addEntry(entryInput, isAlive, currentLocation);
+			router.push('/entries');
 		}
 	};
 
@@ -62,6 +62,8 @@ export default function EntryCreateForm() {
 					required
 					type="text"
 					maxlength="100"
+					label="name"
+					id="name"
 					name="name"
 					value={entryInput.nameValue}
 					placeholder="Feuersalamander"
@@ -155,7 +157,7 @@ export default function EntryCreateForm() {
 			</label>
 
 			<button type="submit" variant="submit">
-				{router.query.nameValue ? 'Korrigieren' : 'Eintrag Erstellen'}
+				{entryToUpdate ? 'Korrigieren' : 'Eintrag Erstellen'}
 			</button>
 		</StyledEntryForm>
 	);
