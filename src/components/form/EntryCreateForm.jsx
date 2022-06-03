@@ -6,24 +6,21 @@ import StyledEntryForm from '../ui/form/FormEntry.styled';
 import Input from '../ui/form/InputEntry.styled';
 
 export default function EntryCreateForm() {
+	const currentLocation = useStore(state => state.currentLocation);
 	const initInputState = {
+		isAlive: true,
 		nameValue: '',
 		numberValue: '',
 		topographyValue: '',
 		descriptionValue: '',
 	};
 	const [entryInput, setEntryInput] = useState(initInputState);
-	const [isAlive, setIsAlive] = useState('true');
 	const router = useRouter();
 	const addEntry = useStore(state => state.addEntry);
 	const editEntry = useStore(state => state.editEntry);
 	const entryToUpdate = useStore(state => state.entryToUpdate);
-	const currentLocation = useStore(state => state.currentLocation);
-	const oldEntry = entryToUpdate && entryToUpdate[0];
 
-	const handleChange = event => {
-		setIsAlive(event.target.value);
-	};
+	const oldEntry = entryToUpdate && entryToUpdate[0];
 
 	useEffect(() => {
 		if (entryToUpdate) {
@@ -38,7 +35,6 @@ export default function EntryCreateForm() {
 				topographyValue: oldEntry.topography,
 				descriptionValue: oldEntry.description,
 			});
-			console.log('-----------------------!!!!!!!!!!!!!!!!!!!!!!', entryToUpdate);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [entryToUpdate, setEntryInput]);
@@ -49,7 +45,7 @@ export default function EntryCreateForm() {
 			editEntry(oldEntry.id, { ...entryInput });
 			router.push('/entries');
 		} else {
-			addEntry(entryInput, isAlive, currentLocation);
+			addEntry(entryInput, currentLocation);
 			router.push('/entries');
 		}
 	};
@@ -81,23 +77,37 @@ export default function EntryCreateForm() {
 					lebend{' '}
 					<input
 						required
+						value
+						id="alive"
 						type="radio"
-						value="true"
-						checked={isAlive === 'true'}
+						//checked={isAlive === 'true'}
 						name="isAlive"
 						variant="radio"
-						onChange={handleChange}
+						onChange={event => {
+							const livingState = event.target.id === 'alive' && true;
+							setEntryInput({
+								...entryInput,
+								isAlive: livingState,
+							});
+						}}
 					/>
 				</label>
 				<label>
 					tot{' '}
 					<input
+						id="dead"
 						type="radio"
-						checked={isAlive === 'false'}
+						//checked={isAlive === 'false'}
 						name="isAlive"
-						value="false"
+						value={false}
 						variant="radio"
-						onChange={handleChange}
+						onChange={event => {
+							const livingState = event.target.id === 'dead' && false;
+							setEntryInput({
+								...entryInput,
+								isAlive: livingState,
+							});
+						}}
 					/>
 				</label>
 			</Fieldset>

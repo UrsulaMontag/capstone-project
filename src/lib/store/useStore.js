@@ -32,14 +32,14 @@ const useStore = create(set => {
 			}
 		},
 
-		addEntry: async (input, bool, location) => {
+		addEntry: async (input, location) => {
 			const current = new Date();
 			const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
 			const newEntry = {
 				date: date,
 				location: [location.lat, location.lng],
 				name: input.nameValue,
-				isAlive: bool,
+				isAlive: input.isAlive,
 				number: input.numberValue ? input.numberValue : null,
 				topography: input.topographyValue ? input.topographyValue : null,
 				description: input.descriptionValue ? input.descriptionValue : null,
@@ -77,7 +77,6 @@ const useStore = create(set => {
 				topography: input.topographyValue ? input.topographyValue : null,
 				description: input.descriptionValue ? input.descriptionValue : null,
 			};
-			console.log('-----------------------!!!!!!!!!!!!!!!!!!!!!!', editedEntry);
 			try {
 				const response = await fetch('/api/entry/' + id, {
 					method: 'PUT',
