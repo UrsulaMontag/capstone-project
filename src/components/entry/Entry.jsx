@@ -1,11 +1,15 @@
 import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
-import useStore from '../../lib/store/useStore';
 import Button from '../ui/Button.styled';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import useStore from '../../lib/store/useStore';
 
-export default function Entry({ entry, index }) {
-	const setDeleteMode = useStore(state => state.setDeleteMode);
+export default function Entry({ entry }) {
+	const [isDeleteMode, setIsDeleteMode] = useState(false);
+	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
 	const deleteEntry = useStore(state => state.deleteEntry);
+	const router = useRouter();
 
 	return (
 		<StyledEntry>
@@ -17,23 +21,38 @@ export default function Entry({ entry, index }) {
 				lat: {entry?.location[1]} <br />
 				date: {entry.date}
 			</Typography>
-			{!entry.deleteMode ? (
-				<Button
-					type="button"
-					variant="smallDo"
-					onClick={() => {
-						setDeleteMode(index);
-					}}
-				>
-					X
-				</Button>
-			) : (
+			{!isDeleteMode ? (
 				<>
 					<Button
 						type="button"
-						variant="warning"
+						variant="smallDo"
 						onClick={() => {
-							deleteEntry(index);
+							setIsDeleteMode(!isDeleteMode);
+						}}
+					>
+						x
+					</Button>
+					<Button
+						type="button"
+						variant="smallDo"
+						onClick={() => {
+							setEntryToUpdate(entry.id);
+
+							router.push({
+								pathname: '/edit-entry',
+							});
+						}}
+					>
+						✎
+					</Button>
+				</>
+			) : (
+				<>
+					<Button
+						variant="warning"
+						type="button"
+						onClick={() => {
+							deleteEntry(entry.id);
 						}}
 					>
 						Unwiderruflich Löschen
@@ -41,7 +60,7 @@ export default function Entry({ entry, index }) {
 					<Button
 						type="button"
 						onClick={() => {
-							setDeleteMode(index);
+							setIsDeleteMode(!isDeleteMode);
 						}}
 					>
 						Abbrechen

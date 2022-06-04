@@ -1,38 +1,53 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useStore from '../../lib/store/useStore';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
 import Input from '../ui/form/InputEntry.styled';
 
 export default function EntryCreateForm() {
+	const currentLocation = useStore(state => state.currentLocation);
 	const initInputState = {
+		isAlive: true,
 		nameValue: '',
 		numberValue: '',
 		topographyValue: '',
 		descriptionValue: '',
 	};
-
-	const addEntry = useStore(state => state.addEntry);
 	const [entryInput, setEntryInput] = useState(initInputState);
-	const [isAlive, setIsAlive] = useState('alive');
-
-	const handleChange = event => {
-		setIsAlive(event.target.value);
-	};
-
-	const resetFormState = () => {
-		setIsAlive('alive');
-		setEntryInput(initInputState);
-	};
 	const router = useRouter();
-	const submit = event => {
+	const addEntry = useStore(state => state.addEntry);
+	const editEntry = useStore(state => state.editEntry);
+	const entryToUpdate = useStore(state => state.entryToUpdate);
+
+	const oldEntry = entryToUpdate && entryToUpdate[0];
+
+	useEffect(() => {
+		if (entryToUpdate) {
+			setEntryInput({
+				...entryInput,
+				id: oldEntry.id,
+				date: oldEntry.date,
+				location: oldEntry.location,
+				nameValue: oldEntry.name,
+				isAlive: oldEntry.isAlive,
+				numberValue: oldEntry.number,
+				topographyValue: oldEntry.topography,
+				descriptionValue: oldEntry.description,
+			});
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [entryToUpdate, setEntryInput]);
+
+	const submit = async event => {
 		event.preventDefault();
-		addEntry(entryInput, isAlive);
-		alert('Erfolgreich in dein Feldtagebuch eingetragen');
-		resetFormState('');
-		event.target.reset();
-		router.push('/entries');
+		if (entryToUpdate) {
+			editEntry(oldEntry.id, { ...entryInput });
+			router.push('/entries');
+		} else {
+			addEntry(entryInput, currentLocation);
+			router.push('/entries');
+		}
 	};
 
 	return (
@@ -43,6 +58,8 @@ export default function EntryCreateForm() {
 					required
 					type="text"
 					maxlength="100"
+					label="name"
+					id="name"
 					name="name"
 					value={entryInput.nameValue}
 					placeholder="Feuersalamander"
@@ -59,23 +76,36 @@ export default function EntryCreateForm() {
 				<label>
 					lebend{' '}
 					<input
+						required
+						value
+						id="alive"
 						type="radio"
-						value="true"
-						checked={isAlive === 'true'}
 						name="isAlive"
 						variant="radio"
-						onChange={handleChange}
+						onChange={event => {
+							const livingState = event.target.id === 'alive' && true;
+							setEntryInput({
+								...entryInput,
+								isAlive: livingState,
+							});
+						}}
 					/>
 				</label>
 				<label>
 					tot{' '}
 					<input
+						id="dead"
 						type="radio"
-						checked={isAlive === 'false'}
 						name="isAlive"
-						value="false"
+						value={false}
 						variant="radio"
-						onChange={handleChange}
+						onChange={event => {
+							const livingState = event.target.id === 'dead' && false;
+							setEntryInput({
+								...entryInput,
+								isAlive: livingState,
+							});
+						}}
 					/>
 				</label>
 			</Fieldset>
@@ -135,7 +165,7 @@ export default function EntryCreateForm() {
 			</label>
 
 			<button type="submit" variant="submit">
-				Eintrag Erstellen
+				{entryToUpdate ? 'Korrigieren' : 'Eintrag Erstellen'}
 			</button>
 		</StyledEntryForm>
 	);
