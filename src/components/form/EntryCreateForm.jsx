@@ -80,7 +80,6 @@ export default function EntryCreateForm() {
 						value
 						id="alive"
 						type="radio"
-						//checked={isAlive === 'true'}
 						name="isAlive"
 						variant="radio"
 						onChange={event => {
@@ -97,7 +96,6 @@ export default function EntryCreateForm() {
 					<input
 						id="dead"
 						type="radio"
-						//checked={isAlive === 'false'}
 						name="isAlive"
 						value={false}
 						variant="radio"
