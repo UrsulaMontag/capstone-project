@@ -1,5 +1,5 @@
 import useStore from '../../lib/store/useStore';
-import Entry from '../entry/Entry';
+import Entry from '../entry/EntryDetail';
 import { StyledList } from '../ui/ListEntries.styled';
 
 export default function EntriesList() {
@@ -9,7 +9,6 @@ export default function EntriesList() {
 		<StyledList>
 			{entries?.map(entry => {
 				const index = entries.findIndex(entry_ => entry_.id === entry.id);
-				console.log(entry);
 				return (
 					<li key={entry.id}>
 						<Entry entry={entry} index={index} />
