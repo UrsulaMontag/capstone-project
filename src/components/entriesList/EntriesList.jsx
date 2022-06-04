@@ -1,5 +1,5 @@
 import useStore from '../../lib/store/useStore';
-import Entry from '../entry/EntryDetail';
+import Entry from '../entry/Entry';
 import { StyledList } from '../ui/ListEntries.styled';
 
 export default function EntriesList() {
