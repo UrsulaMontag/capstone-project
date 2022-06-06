@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const HomeImageBox = styled.figure`
-	width: 80%;
+	width: 60%;
 	height: auto;
 	border-radius: 60px;
 	overflow: hidden;
-	border: 3px solid #4b587f;
+	border: 3px solid #f2bb13;
 `;
 
 export default HomeImageBox;

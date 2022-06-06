@@ -5,10 +5,11 @@ const Box = styled.section`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 5rem;
+	gap: 2rem;
+	overflow: hidden;
 	width: 100%;
 	min-height: 85vh;
-	background: var(--main-bg-color);
+	background-image: url('/contourLine.svg');
 	${({ variant }) =>
 		variant == 'text' &&
 		css`

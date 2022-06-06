@@ -4,7 +4,7 @@ const Button = styled.button`
 	background: var(--button-bg-color);
 	color: var(--text-color-dark);
 	font-size: 1.6rem;
-	padding: 0.5rem;
+	padding: 0.8rem;
 	border-radius: 20px;
 	border: none;
 	width: 55%;
@@ -16,17 +16,14 @@ const Button = styled.button`
 		variant == 'warning' &&
 		css`
 			color: var(--color-warning-red);
-			:hover {
-				border: 3px solid var(--color-warning-red);
-			}
+			border: 3px solid var(--color-warning-red);
 		`};
 	${({ variant }) =>
 		variant === 'smallDo' &&
 		css`
-			width: 4.6rem;
+			width: 6.6rem;
 			height: 4.6rem;
 			font-weight: 700;
-			border-radius: 10px;
 		`};
 
 	:hover {

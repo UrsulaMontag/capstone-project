@@ -1,11 +1,14 @@
-import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
 import Button from '../ui/Button.styled';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useStore from '../../lib/store/useStore';
-import { nanoid } from 'nanoid';
 import Image from 'next/image';
+import { DetailCard } from '../ui/DetailCard.styled';
+import CardImage from '../ui/CardImage.styled';
+import ButtonBox from '../ui/CardButtonBox.styled';
+import { Details } from '../ui/CardDetails.styled';
+import { TextBox } from '../ui/TextBox.styled';
 
 export default function Entry({ entry }) {
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
@@ -14,40 +17,58 @@ export default function Entry({ entry }) {
 	const router = useRouter();
 
 	return (
-		<StyledEntry>
-			<ul>
-				{Object.entries(entry).map(entry => {
-					return (
-						entry[0] !== 'id' &&
-						entry[0] !== 'location' &&
-						entry[1] && (
-							<li key={nanoid()}>
-								<Typography variant="h3">
-									{entry[0] === 'name'
-										? 'Name:'
-										: entry[0] === 'date'
-										? 'Datum:'
-										: entry[0] === 'topography'
-										? 'Beschreibe deinen Fundort:'
-										: entry[0] === 'description'
-										? 'Beschreibe deine Entdeckung:'
-										: null}
-								</Typography>
-								<Typography variant="body1">{entry[1]}</Typography>
-							</li>
-						)
-					);
-				})}
-			</ul>
-			<Image
-				src="https://source.unsplash.com/random/900X700?{entry.name}"
-				alt="example picture of animal"
-				width={900}
-				height={700}
-				layout="responsive"
-			/>
+		<DetailCard variant={entry.isAlive}>
+			<CardImage>
+				<Image
+					src="/homepic.png"
+					alt="example picture of animal"
+					width={900}
+					height={700}
+					layout="responsive"
+				/>
+			</CardImage>
+			<TextBox>
+				<Typography variant="h3">Datum:</Typography>
+				<Typography variant="body1">{entry.date}</Typography>
+			</TextBox>
+			<TextBox>
+				<Typography variant="h3">Name:</Typography>
+				<Typography variant="body1">{entry.name}</Typography>
+			</TextBox>
+
+			<TextBox>
+				<Typography variant="h3">Anzahl:</Typography>
+				{entry.number ? (
+					<Typography variant="body1">{entry.number}</Typography>
+				) : (
+					'Nicht zählbar'
+				)}
+			</TextBox>
+
+			<Details>
+				<summary>
+					<Typography variant="h3">Fundort in Worten: </Typography>
+				</summary>
+				{entry.topography ? (
+					<Typography variant="body1">{entry.topography}</Typography>
+				) : (
+					'Deinen Fundort hast du noch nicht beschrieben.'
+				)}
+			</Details>
+
+			<Details>
+				<summary>
+					<Typography variant="h3">Besonderheiten der Entdeckung:</Typography>
+				</summary>
+				{entry.description ? (
+					<Typography variant="body1">{entry.description}</Typography>
+				) : (
+					'Du hast noch keine Besonderheiten deiner Entdeckung eingetragen.'
+				)}
+			</Details>
+
 			{!isDeleteMode ? (
-				<>
+				<ButtonBox>
 					<Button
 						type="button"
 						variant="smallDo"
@@ -70,14 +91,17 @@ export default function Entry({ entry }) {
 					>
 						✎
 					</Button>
-				</>
+				</ButtonBox>
 			) : (
-				<>
+				<ButtonBox>
 					<Button
 						variant="warning"
 						type="button"
 						onClick={() => {
 							deleteEntry(entry.id);
+							router.push({
+								pathname: '/entries',
+							});
 						}}
 					>
 						Unwiderruflich Löschen
@@ -90,117 +114,8 @@ export default function Entry({ entry }) {
 					>
 						Abbrechen
 					</Button>
-				</>
+				</ButtonBox>
 			)}
-		</StyledEntry>
+		</DetailCard>
 	);
 }
-/**export default function Entry({ entry, ...props }) {
-	const [isDeleteMode, setIsDeleteMode] = useState(false);
-	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
-	const deleteEntry = useStore(state => state.deleteEntry);
-	const router = useRouter();
-
-	return props.index ? (
-		<StyledEntry>
-			<ul>
-				{Object?.entries(entry).map(entry => {
-					return (
-						entry[0] === 'date' &&
-						entry[0] === 'name' &&
-						entry[1] && (
-							<li key={nanoid()}>
-								<Typography variant="h3">
-									{entry[0] === 'date'
-										? 'Datum:'
-										: entry[0] === 'name' && 'Name:'}
-								</Typography>
-								<Typography variant="body1">{entry[1]}</Typography>
-							</li>
-						)
-					);
-				})}
-			</ul>
-		</StyledEntry>
-	) : (
-		<StyledEntry>
-			<ul>
-				{Object.entries(entry).map(entry => {
-					return (
-						entry[0] !== 'id' &&
-						entry[0] !== 'location' &&
-						entry[1] && (
-							<li key={nanoid()}>
-								<Typography variant="h3">
-									{entry[0] === 'name'
-										? 'Name:'
-										: entry[0] === 'date'
-										? 'Datum:'
-										: entry[0] === 'topography'
-										? 'Beschreibe deinen Fundort:'
-										: entry[0] === 'description'
-										? 'Beschreibe deine Entdeckung:'
-										: null}
-								</Typography>
-								<Typography variant="body1">{entry[1]}</Typography>
-							</li>
-						)
-					);
-				})}
-			</ul>
-			<Image
-				src="https://source.unsplash.com/random/900X700?{entry.name}"
-				alt="example picture of animal"
-				width={900}
-				height={700}
-				layout="responsive"
-			/>
-			{!isDeleteMode ? (
-				<>
-					<Button
-						type="button"
-						variant="smallDo"
-						onClick={() => {
-							setIsDeleteMode(!isDeleteMode);
-						}}
-					>
-						x
-					</Button>
-					<Button
-						type="button"
-						variant="smallDo"
-						onClick={() => {
-							setEntryToUpdate(entry.id);
-
-							router.push({
-								pathname: '/edit-entry',
-							});
-						}}
-					>
-						✎
-					</Button>
-				</>
-			) : (
-				<>
-					<Button
-						variant="warning"
-						type="button"
-						onClick={() => {
-							deleteEntry(entry.id);
-						}}
-					>
-						Unwiderruflich Löschen
-					</Button>
-					<Button
-						type="button"
-						onClick={() => {
-							setIsDeleteMode(!isDeleteMode);
-						}}
-					>
-						Abbrechen
-					</Button>
-				</>
-			)}
-		</StyledEntry>
-	);
-} */

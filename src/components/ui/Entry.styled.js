@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-export const StyledEntry = styled.div`
+export const StyledEntry = styled.article`
+	position: relative;
 	display: flex;
-	flex-direction: column;
 	gap: 2rem;
-	min-width: 80vw;
+	min-width: 99vw;
 	max-width: 600px;
-	padding: 2rem;
-	margin: 3rem 0;
+	padding: 1rem;
+	border-radius: 30px;
 
 	overfow: hidden;
 	background-color: var(--bg-color-light);
-	border: 1px solid var(--main-bg-color);
+	border: 2px solid var(--color-light);
 	box-shadow: 4px -3px;
 `;

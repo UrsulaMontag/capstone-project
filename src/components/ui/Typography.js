@@ -20,6 +20,18 @@ export default function Typography({ children, variant, component, ...rest }) {
 					{children}
 				</StyledH3>
 			);
+		case 'h3-list':
+			return (
+				<StyledH3List {...rest} as={component}>
+					{children}
+				</StyledH3List>
+			);
+		case 'h3-link':
+			return (
+				<StyledH3Link {...rest} as={component}>
+					{children}
+				</StyledH3Link>
+			);
 		case 'body1':
 			return (
 				<StyledBodyText {...rest} as={component}>
@@ -42,17 +54,28 @@ export default function Typography({ children, variant, component, ...rest }) {
 }
 
 const StyledH1 = styled.h1`
-	color: var(--text-color-dark);
-	background: ${({ background }) => background};
+	color: var(--color-light);
+	//font-family: 'Architects Daughter';
+	font-size: 4rem;
 `;
 const StyledH2 = styled.h2`
 	margin-top: 1rem;
-	color: var(--text-color-dark);
+	color: var(--color-light);
 	font-size: 2.2rem;
 `;
 const StyledH3 = styled.h3`
 	color: var(--headline-little);
 	font-size: 1.6rem;
+`;
+const StyledH3List = styled.h3`
+	color: var(--headline-little);
+	font-size: 1.6rem;
+	font-weight: 400;
+`;
+const StyledH3Link = styled.h3`
+	color: var(--color-warning-red);
+	font-size: 1.6rem;
+	font-weight: 700;
 `;
 const StyledBodyText = styled.p`
 	color: var(--text-color-dark);
