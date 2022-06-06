@@ -5,6 +5,7 @@ import Button from '../ui/Button.styled';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
 import { Input } from '../ui/form/InputEntry.styled';
+import { Textarea } from '../ui/form/Textarea.styled';
 
 export default function EntryCreateForm() {
 	const currentLocation = useStore(state => state.currentLocation);
@@ -134,10 +135,9 @@ export default function EntryCreateForm() {
 			</label>
 			<label>
 				Fundort Beschreibung:{' '}
-				<Input
+				<Textarea
 					type="textarea"
 					name="topography"
-					maxlength="400"
 					value={entryInput.topographyValue}
 					variant="textarea"
 					onChange={event => {
@@ -150,10 +150,9 @@ export default function EntryCreateForm() {
 			</label>
 			<label>
 				Beschreibe deine Entdeckung:{' '}
-				<Input
+				<Textarea
 					type="textarea"
 					name="description"
-					maxlength="1500"
 					value={entryInput.descriptionValue}
 					variant="textarea"
 					onChange={event => {
