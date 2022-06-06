@@ -10,7 +10,7 @@ const HomeBox = styled.section`
 	gap: 2rem;
 	overflow: hidden;
 	width: 100%;
-	height: 85vh;
+	height: 95vh;
 	background-image: url('/contourLine.svg');
 `;
 

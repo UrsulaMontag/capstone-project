@@ -7,7 +7,7 @@ const HomeImageBox = styled.figure`
 	overflow: hidden;
 	border: 4px solid #f2bb13;
 	position: absolute;
-	transform: translate(17%, -66%);
+	transform: translate(15%, -82%);
 `;
 
 export default HomeImageBox;

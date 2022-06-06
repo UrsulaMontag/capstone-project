@@ -6,7 +6,7 @@ const StyledEntryForm = styled.form`
 	gap: 2rem;
 	width: 100vw;
 	max-width: 600px;
-	margin: 4rem;
+	margin: 4rem 0 11rem 0;
 	padding: 2rem;
 
 	background-color: var(--bg-color-light);
