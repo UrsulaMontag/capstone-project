@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { TextBox } from '../ui/TextBox.styled';
 import { IconBox } from '../ui/ListIconBox.styled';
+import { LinkBox } from '../ui/LinkBox.styled';
 
 export default function Entry({ entry }) {
 	const router = useRouter();
@@ -25,7 +26,7 @@ export default function Entry({ entry }) {
 					},
 				}}
 			>
-				<div pathName={router.pathname}>
+				<LinkBox pathName={router.pathname}>
 					<TextBox variant="icon">
 						<Typography variant="h3-link">{entry.name}</Typography>
 
@@ -38,7 +39,7 @@ export default function Entry({ entry }) {
 							/>
 						</IconBox>
 					</TextBox>
-				</div>
+				</LinkBox>
 			</Link>
 		</StyledEntry>
 	);

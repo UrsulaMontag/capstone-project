@@ -1,6 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-const Box = styled.section`
+const HomeBox = styled.section`
+	position: relative;
+	height: 85vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -8,13 +10,8 @@ const Box = styled.section`
 	gap: 2rem;
 	overflow: hidden;
 	width: 100%;
+	height: 85vh;
 	background-image: url('/contourLine.svg');
-	${({ variant }) =>
-		variant == 'text' &&
-		css`
-			padding: 2rem;
-		}
-		`};
 `;
 
-export default Box;
+export default HomeBox;

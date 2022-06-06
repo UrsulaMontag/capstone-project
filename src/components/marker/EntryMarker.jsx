@@ -14,8 +14,10 @@ export default function EntryMarker() {
 							<Link
 								passHref
 								href={{
-									pathname: '/entry/[id]',
+									pathname: '/entry/' + entry.id,
 									query: {
+										as: 'id',
+										entry: entry,
 										id: entry.id,
 									},
 								}}

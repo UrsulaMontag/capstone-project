@@ -17,7 +17,7 @@ export default function Entry({ entry }) {
 	const router = useRouter();
 
 	return (
-		<DetailCard variant={entry.isAlive}>
+		<DetailCard>
 			<CardImage>
 				<Image
 					src="/homepic.png"
