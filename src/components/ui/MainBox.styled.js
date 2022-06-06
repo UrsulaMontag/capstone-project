@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const Box = styled.section`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -13,6 +14,7 @@ const Box = styled.section`
 		variant == 'text' &&
 		css`
 			padding: 2rem;
+			margin-top: 4.6rem;
 		}
 		`};
 `;

@@ -8,7 +8,7 @@ export const StyledEntry = styled.article`
 	min-width: 99vw;
 	max-width: 600px;
 	padding: 1rem;
-	border-radius: 30px;
+	border-radius: 18px;
 
 	overfow: hidden;
 	background-color: var(--bg-color-light);

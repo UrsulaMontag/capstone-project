@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import useStore from '../../lib/store/useStore';
+import Button from '../ui/Button.styled';
 import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
-import Input from '../ui/form/InputEntry.styled';
+import { Input } from '../ui/form/InputEntry.styled';
 
 export default function EntryCreateForm() {
 	const currentLocation = useStore(state => state.currentLocation);
@@ -63,6 +64,7 @@ export default function EntryCreateForm() {
 					name="name"
 					value={entryInput.nameValue}
 					placeholder="Feuersalamander"
+					variant="text"
 					onChange={event => {
 						setEntryInput({
 							...entryInput,
@@ -78,6 +80,7 @@ export default function EntryCreateForm() {
 					<input
 						required
 						value
+						checked
 						id="alive"
 						type="radio"
 						name="isAlive"
@@ -137,7 +140,6 @@ export default function EntryCreateForm() {
 					maxlength="400"
 					value={entryInput.topographyValue}
 					variant="textarea"
-					placeholder="Hinterer Balkeshauweg. Schotterweg im Wald."
 					onChange={event => {
 						setEntryInput({
 							...entryInput,
@@ -154,7 +156,6 @@ export default function EntryCreateForm() {
 					maxlength="1500"
 					value={entryInput.descriptionValue}
 					variant="textarea"
-					placeholder="Zwei ausgewachsene Exemplare zwischen Graben und Spazierweg."
 					onChange={event => {
 						setEntryInput({
 							...entryInput,
@@ -164,9 +165,9 @@ export default function EntryCreateForm() {
 				/>
 			</label>
 
-			<button type="submit" variant="submit">
+			<Button type="submit" variant="submit">
 				{entryToUpdate ? 'Korrigieren' : 'Eintrag Erstellen'}
-			</button>
+			</Button>
 		</StyledEntryForm>
 	);
 }

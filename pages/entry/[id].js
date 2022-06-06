@@ -1,7 +1,7 @@
 import Entry from '../../src/components/entry/EntryDetail';
 import { useRouter } from 'next/router';
 import useStore from '../../src/lib/store/useStore';
-import Box from '../../src/components/ui/MainBox.styled';
+import HomeBox from '../../src/components/ui/HomeBox.styled';
 
 export default function EntryCard() {
 	const router = useRouter();
@@ -10,8 +10,8 @@ export default function EntryCard() {
 	const entry = entries.filter(entry => entry.id === entryID.id)[0];
 
 	return (
-		<Box variant="cardList">
+		<HomeBox>
 			<Entry entry={entry} />
-		</Box>
+		</HomeBox>
 	);
 }

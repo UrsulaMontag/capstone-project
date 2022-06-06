@@ -59,7 +59,6 @@ const StyledH1 = styled.h1`
 	font-size: 4rem;
 `;
 const StyledH2 = styled.h2`
-	margin-top: 1rem;
 	color: var(--color-light);
 	font-size: 2.2rem;
 `;
@@ -81,10 +80,10 @@ const StyledBodyText = styled.p`
 	color: var(--text-color-dark);
 `;
 const StyledInfoText = styled.p`
-	color: var(--text-color-dark);
+	color: var(--bg-color-light);
 	font-weight: 200;
 `;
 const StyledInfoHead = styled.span`
-	color: var(--text-color-dark);
+	color: var(--bg-color-light);
 	font-weight: 200;
 `;

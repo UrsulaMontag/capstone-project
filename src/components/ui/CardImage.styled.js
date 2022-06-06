@@ -7,7 +7,7 @@ const CardImage = styled.figure`
 	width: 33vw;
 	height: auto;
 	border: 2px solid #f2bb13;
-	border-radius: 30px;
+	border-radius: 18px;
 	overflow: hidden;
 `;
 export default CardImage;

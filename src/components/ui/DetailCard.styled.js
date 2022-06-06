@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const DetailCard = styled.article`
 	position: relative;
@@ -10,16 +10,7 @@ export const DetailCard = styled.article`
 
 	overfow: hidden;
 	background-color: var(--bg-color-light);
-	box-shadow: 4px -3px;
+	border: 2px solid var(--color-light);
 
-	${({ variant }) =>
-		variant == true &&
-		css`
-			border: 2px solid var(--color-light);
-		`};
-	${({ variant }) =>
-		variant == false &&
-		css`
-			border: 2px solid var(--color-warning-red);
-		`};
+	box-shadow: 4px -3px;
 `;

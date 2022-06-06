@@ -5,12 +5,11 @@ const Button = styled.button`
 	color: var(--text-color-dark);
 	font-size: 1.6rem;
 	padding: 0.8rem;
-	border-radius: 20px;
+	border-radius: 8px;
 	border: none;
 	width: 55%;
 
 	box-shadow: 6px -3px var(--shadow);
-	filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
 
 	${({ variant }) =>
 		variant == 'warning' &&
