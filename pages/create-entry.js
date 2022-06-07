@@ -11,10 +11,10 @@ const MapWithNoSSR = dynamic(() => import('../src/components/map/Map'), {
 export default function CreateEntry() {
 	return (
 		<>
+			<HeadingBox>
+				<Typography variant="h2">Erstelle einen Eintrag</Typography>
+			</HeadingBox>
 			<Box variant="text">
-				<HeadingBox>
-					<Typography variant="h2">Erstelle einen Eintrag</Typography>
-				</HeadingBox>
 				<Typography variant="info">
 					<Typography variant="info-head">
 						Für eine optimale Verortung deiner Entdeckung:

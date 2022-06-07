@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledEntry = styled.article`
 	position: relative;
 	display: flex;
-	justify-content: strech;
 	gap: 2rem;
 	min-width: 99vw;
 	max-width: 600px;

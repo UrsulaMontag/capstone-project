@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { TextBox } from '../ui/TextBox.styled';
 import { IconBox } from '../ui/ListIconBox.styled';
-import { LinkBox } from '../ui/LinkBox.styled';
 
 export default function Entry({ entry }) {
 	const router = useRouter();
@@ -26,20 +25,18 @@ export default function Entry({ entry }) {
 					},
 				}}
 			>
-				<LinkBox pathName={router.pathname}>
-					<TextBox variant="icon">
-						<Typography variant="h3-link">{entry.name}</Typography>
+				<TextBox variant="icon" pathName={router.pathname}>
+					<Typography variant="h3-link">{entry.name}</Typography>
 
-						<IconBox>
-							<Image
-								src="/salamander.png"
-								alt="icon with linkfunktion"
-								width={25}
-								height={25}
-							/>
-						</IconBox>
-					</TextBox>
-				</LinkBox>
+					<IconBox>
+						<Image
+							src="/salamander.png"
+							alt="icon with linkfunktion"
+							width={25}
+							height={25}
+						/>
+					</IconBox>
+				</TextBox>
 			</Link>
 		</StyledEntry>
 	);
