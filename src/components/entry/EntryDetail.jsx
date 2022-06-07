@@ -10,7 +10,7 @@ import ButtonBox from '../ui/CardButtonBox.styled';
 import { Details } from '../ui/CardDetails.styled';
 import { TextBox } from '../ui/TextBox.styled';
 
-export default function Entry({ entry }) {
+export default function EntryDetail({ entry }) {
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
 	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
 	const deleteEntry = useStore(state => state.deleteEntry);
