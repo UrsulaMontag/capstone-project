@@ -55,7 +55,7 @@ export default function Typography({ children, variant, component, ...rest }) {
 
 const StyledH1 = styled.h1`
 	color: var(--color-light);
-	//font-family: 'Architects Daughter';
+	font-family: 'Kdam Thmor Pro', sans-serif;
 	font-size: 4rem;
 `;
 const StyledH2 = styled.h2`

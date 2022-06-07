@@ -16,7 +16,7 @@ export default function Navigation() {
 				}}
 			>
 				<NavBox pathName={router.pathname}>
-					<Image src="/home.svg" alt="link to home page" width={50} height={50} />
+					<Image src="/home.svg" alt="link to home page" width={37} height={37} />
 				</NavBox>
 			</Link>
 
@@ -27,7 +27,7 @@ export default function Navigation() {
 				}}
 			>
 				<NavBox pathName={router.pathname}>
-					<Image src="/arrow.svg" alt="link to map" width={47} height={47} />
+					<Image src="/arrow.svg" alt="link to map" width={34} height={34} />
 				</NavBox>
 			</Link>
 
@@ -38,7 +38,7 @@ export default function Navigation() {
 				}}
 			>
 				<NavBox pathName={router.pathname}>
-					<Image src="/create.svg" alt="link to home page" width={50} height={50} />
+					<Image src="/create.svg" alt="link to home page" width={37} height={37} />
 				</NavBox>
 			</Link>
 
@@ -49,7 +49,7 @@ export default function Navigation() {
 				}}
 			>
 				<NavBox pathName={router.pathname}>
-					<Image src="/book.svg" alt="link to home page" width={50} height={50} />
+					<Image src="/book.svg" alt="link to home page" width={37} height={37} />
 				</NavBox>
 			</Link>
 		</NavBottom>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const NavBottom = styled.article`
 	background: var(--detail-color);
 	max-width: 100vw;
-	height: 9vh;
+	height: 7vh;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
