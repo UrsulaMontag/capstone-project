@@ -57,10 +57,12 @@ const StyledH1 = styled.h1`
 	color: var(--color-light);
 	font-family: 'Kdam Thmor Pro', sans-serif;
 	font-size: 4rem;
+	margin-top: 18rem;
 `;
 const StyledH2 = styled.h2`
 	color: var(--color-light);
 	font-size: 2.2rem;
+	font-family: 'Kdam Thmor Pro', sans-serif;
 `;
 const StyledH3 = styled.h3`
 	color: var(--headline-little);
