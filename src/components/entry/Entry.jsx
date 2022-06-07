@@ -25,7 +25,7 @@ export default function Entry({ entry }) {
 					},
 				}}
 			>
-				<TextBox variant="icon" pathName={router.pathname}>
+				<TextBox variant="icon" pathname={router.pathname}>
 					<Typography variant="h3-link">{entry.name}</Typography>
 
 					<IconBox>
