@@ -2,6 +2,17 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import EntriesList from './EntriesList';
 
+jest.mock('next/router', () => ({
+	useRouter() {
+		return {
+			route: '/',
+			pathname: '',
+			query: '',
+			asPath: '',
+		};
+	},
+}));
+
 describe('EntriesList', () => {
 	it('renders every entry of the entry array', () => {
 		render(

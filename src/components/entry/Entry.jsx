@@ -1,72 +1,43 @@
 import { StyledEntry } from '../ui/Entry.styled';
 import Typography from '../ui/Typography';
-import Button from '../ui/Button.styled';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
-import useStore from '../../lib/store/useStore';
+import Link from 'next/link';
+import Image from 'next/image';
+import { TextBox } from '../ui/TextBox.styled';
+import { IconBox } from '../ui/ListIconBox.styled';
 
 export default function Entry({ entry }) {
-	const [isDeleteMode, setIsDeleteMode] = useState(false);
-	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
-	const deleteEntry = useStore(state => state.deleteEntry);
 	const router = useRouter();
 
 	return (
 		<StyledEntry>
-			<Typography variant="h3">Name:</Typography>
-			<Typography variant="body1">{entry.name}</Typography>
-			<Typography variant="h3">Place:</Typography>
-			<Typography variant="body1">
-				lng: {entry?.location[0]} <br />
-				lat: {entry?.location[1]} <br />
-				date: {entry.date}
-			</Typography>
-			{!isDeleteMode ? (
-				<>
-					<Button
-						type="button"
-						variant="smallDo"
-						onClick={() => {
-							setIsDeleteMode(!isDeleteMode);
-						}}
-					>
-						x
-					</Button>
-					<Button
-						type="button"
-						variant="smallDo"
-						onClick={() => {
-							setEntryToUpdate(entry.id);
+			<TextBox>
+				<Typography variant="h3-list">{entry.date}</Typography>
+			</TextBox>
+			<Link
+				passHref
+				href={{
+					pathname: '/entry/' + entry.id,
+					query: {
+						as: 'id',
+						entry: entry,
+						id: entry.id,
+					},
+				}}
+			>
+				<TextBox variant="icon" pathname={router.pathname}>
+					<Typography variant="h3-link">{entry.name}</Typography>
 
-							router.push({
-								pathname: '/edit-entry',
-							});
-						}}
-					>
-						✎
-					</Button>
-				</>
-			) : (
-				<>
-					<Button
-						variant="warning"
-						type="button"
-						onClick={() => {
-							deleteEntry(entry.id);
-						}}
-					>
-						Unwiderruflich Löschen
-					</Button>
-					<Button
-						type="button"
-						onClick={() => {
-							setIsDeleteMode(!isDeleteMode);
-						}}
-					>
-						Abbrechen
-					</Button>
-				</>
-			)}
+					<IconBox>
+						<Image
+							src="/salamander.png"
+							alt="icon with linkfunktion"
+							width={25}
+							height={25}
+						/>
+					</IconBox>
+				</TextBox>
+			</Link>
 		</StyledEntry>
 	);
 }

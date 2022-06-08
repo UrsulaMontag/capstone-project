@@ -2,6 +2,17 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import Entry from './Entry';
 
+jest.mock('next/router', () => ({
+	useRouter() {
+		return {
+			route: '/',
+			pathname: '',
+			query: '',
+			asPath: '',
+		};
+	},
+}));
+
 describe('Entry', () => {
 	it('renders name and location of entry only', () => {
 		render(
@@ -20,13 +31,9 @@ describe('Entry', () => {
 		);
 
 		const name = screen.queryByText(/Feuersalamander/i);
-		const location1 = screen.queryByText(/48.745537999999996/i);
-		const location2 = screen.queryByText(/9.4452515/i);
-		const deleteButton = screen.queryByRole('button', { name: /X/i });
+		const date = screen.queryByText(/2022-08-05/i);
 
 		expect(name).toBeInTheDocument();
-		expect(location1).toBeInTheDocument();
-		expect(location2).toBeInTheDocument();
-		expect(deleteButton).toBeInTheDocument();
+		expect(date).toBeInTheDocument();
 	});
 });

@@ -15,6 +15,9 @@ export default function LandingPage() {
 				/>
 			</HomeImageBox>
 			<Typography variant="h1">Rare-Traces</Typography>
+			<Typography variant="h2" component="h2">
+				was - wann - wo
+			</Typography>
 		</>
 	);
 }

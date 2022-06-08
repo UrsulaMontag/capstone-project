@@ -1,18 +1,15 @@
 import styled, { css } from 'styled-components';
 
 const Box = styled.section`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 5rem;
+	position: relative;
+	overflow: hidden;
 	width: 100%;
-	min-height: 85vh;
-	background: var(--main-bg-color);
+	background-image: url('/contourLine.svg');
 	${({ variant }) =>
 		variant == 'text' &&
 		css`
 			padding: 2rem;
+			margin-top: 4.6rem;
 		}
 		`};
 `;

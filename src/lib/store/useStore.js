@@ -24,7 +24,7 @@ const useStore = create(set => {
 					method: 'DELETE',
 				});
 				set(state => {
-					return { entries: state.entries.filter(entry => entry.id !== id) };
+					return { entries: state?.entries.filter(entry => entry.id !== id) };
 				});
 				console.log(await response.json());
 			} catch (error) {

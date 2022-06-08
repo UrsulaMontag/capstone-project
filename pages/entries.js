@@ -1,14 +1,15 @@
 import Box from '../src/components/ui/MainBox.styled';
 import Typography from '../src/components/ui/Typography';
-import dynamic from 'next/dynamic';
-const ListWithNoSSR = dynamic(() => import('../src/components/entriesList/EntriesList'), {
-	ssr: false,
-});
+import EntriesList from '../src/components/entriesList/EntriesList';
+import { HeadingBox } from '../src/components/ui/HeadingBox.styled';
+
 export default function Entries() {
 	return (
 		<Box variant="cardList">
-			<Typography variant="h2">Deine Entdeckungen</Typography>
-			<ListWithNoSSR />
+			<HeadingBox>
+				<Typography variant="h2">Deine Entdeckungen</Typography>
+			</HeadingBox>
+			<EntriesList />
 		</Box>
 	);
 }
