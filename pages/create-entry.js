@@ -37,9 +37,13 @@ export default function CreateEntry() {
 					</Box>
 				</>
 			) : (
-				<Typography variant="h2">
-					Bitte logge dich ein, um Einträge zu erstellen.
-				</Typography>
+				<Box>
+					<InfoTextBox>
+						<Typography variant="login-info">
+							Bitte logge dich ein, um Einträge zu erstellen.
+						</Typography>
+					</InfoTextBox>
+				</Box>
 			)}
 		</>
 	);

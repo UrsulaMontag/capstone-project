@@ -75,7 +75,7 @@ export default function EntryDetail() {
 				)}
 			</Details>
 
-			{session && session.user.email === entry.user && !isDeleteMode ? (
+			{session && !isDeleteMode ? (
 				<ButtonBox>
 					<Button
 						type="button"
@@ -100,7 +100,7 @@ export default function EntryDetail() {
 						✎
 					</Button>
 				</ButtonBox>
-			) : (
+			) : session && isDeleteMode ? (
 				<ButtonBox>
 					<Button
 						variant="warning"
@@ -123,7 +123,7 @@ export default function EntryDetail() {
 						Abbrechen
 					</Button>
 				</ButtonBox>
-			)}
+			) : null}
 		</DetailCard>
 	);
 }
