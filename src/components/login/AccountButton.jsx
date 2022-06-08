@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
+import Button from '../ui/Button.styled';
 import Typography from '../ui/Typography';
 
 export default function Accountbutton() {
@@ -8,15 +9,15 @@ export default function Accountbutton() {
 		return (
 			<>
 				<Typography variant="body1">Hello {session.user.name}</Typography>
-				<button type="button" onClick={() => signOut()}>
-					Sign out
-				</button>
+				<Button variant="logout" type="button" onClick={() => signOut()}>
+					Logout
+				</Button>
 			</>
 		);
 	}
 	return (
-		<button type="button" onClick={() => signIn()}>
-			Sign in
-		</button>
+		<Button variant="login" type="button" onClick={() => signIn()}>
+			Login
+		</Button>
 	);
 }
