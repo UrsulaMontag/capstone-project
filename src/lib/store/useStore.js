@@ -43,7 +43,7 @@ const useStore = create(set => {
 				number: input.numberValue ? input.numberValue : null,
 				topography: input.topographyValue ? input.topographyValue : null,
 				description: input.descriptionValue ? input.descriptionValue : null,
-				user: session.email,
+				user: session.user.email,
 				img: input.imgValue ? input.imgValue : '/homepic.png',
 			};
 			try {
