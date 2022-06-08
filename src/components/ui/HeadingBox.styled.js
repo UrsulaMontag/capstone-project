@@ -8,7 +8,7 @@ const HeadingBox = styled.header`
 	position: fixed;
 	top: 0;
 	overflow: hidden;
-	z-index: 1000;
+	z-index: 10000;
 `;
 
 export { HeadingBox };
