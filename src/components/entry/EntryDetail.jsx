@@ -10,11 +10,15 @@ import ButtonBox from '../ui/CardButtonBox.styled';
 import { Details } from '../ui/CardDetails.styled';
 import { TextBox } from '../ui/TextBox.styled';
 
-export default function EntryDetail({ entry }) {
+export default function EntryDetail() {
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
 	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
 	const deleteEntry = useStore(state => state.deleteEntry);
 	const router = useRouter();
+
+	const entryID = router.query;
+	const entries = useStore(state => state.entries);
+	const entry = entries?.filter(entry => entry.id === entryID.id)[0];
 
 	return (
 		<DetailCard>
