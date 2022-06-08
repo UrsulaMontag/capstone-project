@@ -75,7 +75,7 @@ export default function EntryDetail() {
 				)}
 			</Details>
 
-			{!isDeleteMode ? (
+			{session && session.user.email === entry.user && !isDeleteMode ? (
 				<ButtonBox>
 					<Button
 						type="button"
