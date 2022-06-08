@@ -14,6 +14,8 @@ export default async function handler(req, res) {
 			number: newEntryData.number,
 			topography: newEntryData.topography,
 			description: newEntryData.description,
+			user: newEntryData.user,
+			img: newEntryData.img,
 		});
 
 		res.status(200).json({

@@ -4,12 +4,14 @@ import Typography from '../src/components/ui/Typography';
 import dynamic from 'next/dynamic';
 import SmallMap from '../src/components/ui/MapSmall.styled';
 import { HeadingBox } from '../src/components/ui/HeadingBox.styled';
+import { useSession } from 'next-auth/react';
 const MapWithNoSSR = dynamic(() => import('../src/components/map/Map'), {
 	ssr: false,
 });
 
 export default function CreateEntry() {
-	return (
+	const { data: session } = useSession();
+	return session ? (
 		<>
 			<HeadingBox>
 				<Typography variant="h2">Erstelle einen Eintrag</Typography>
@@ -31,5 +33,7 @@ export default function CreateEntry() {
 				<EntryCreateForm />
 			</Box>
 		</>
+	) : (
+		<Typography variant="h2">Bitte logge dich ein, um Einträge zu erstellen.</Typography>
 	);
 }

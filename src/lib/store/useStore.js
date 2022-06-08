@@ -32,7 +32,7 @@ const useStore = create(set => {
 			}
 		},
 
-		addEntry: async (input, location) => {
+		addEntry: async (input, location, session) => {
 			const current = new Date();
 			const date = `${current.getFullYear()}-${current.getDate()}-${current.getMonth() + 1}`;
 			const newEntry = {
@@ -43,6 +43,8 @@ const useStore = create(set => {
 				number: input.numberValue ? input.numberValue : null,
 				topography: input.topographyValue ? input.topographyValue : null,
 				description: input.descriptionValue ? input.descriptionValue : null,
+				user: session.email,
+				img: input.imgValue ? input.imgValue : '/homepic.png',
 			};
 			try {
 				const response = await fetch('/api/entry/create', {
@@ -76,6 +78,8 @@ const useStore = create(set => {
 				number: input.numberValue ? input.numberValue : null,
 				topography: input.topographyValue ? input.topographyValue : null,
 				description: input.descriptionValue ? input.descriptionValue : null,
+				user: input.user,
+				img: input.img,
 			};
 			try {
 				const response = await fetch('/api/entry/' + id, {

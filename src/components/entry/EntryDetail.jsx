@@ -9,8 +9,12 @@ import CardImage from '../ui/CardImage.styled';
 import ButtonBox from '../ui/CardButtonBox.styled';
 import { Details } from '../ui/CardDetails.styled';
 import { TextBox } from '../ui/TextBox.styled';
+import { useSession } from 'next-auth/react';
 
 export default function EntryDetail() {
+	const { data: session } = useSession();
+	session && console.log(session);
+
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
 	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
 	const deleteEntry = useStore(state => state.deleteEntry);

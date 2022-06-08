@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const HomeBox = styled.section`
 	position: relative;
-	height: 85vh;
+	min-height: 85vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
