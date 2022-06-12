@@ -28,10 +28,10 @@ export default function EntryDetail() {
 		<DetailCard>
 			<CardImage>
 				<Image
-					src="/homepic.png"
+					src={entry?.img.url ? entry.img.url : entry.img}
 					alt="example picture of animal"
-					width={900}
-					height={700}
+					width={entry?.img.width ? entry.img.width : 900}
+					height={entry?.img.height ? entry.img.height : 700}
 					layout="responsive"
 				/>
 			</CardImage>
