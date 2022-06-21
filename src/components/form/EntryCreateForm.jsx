@@ -6,8 +6,10 @@ import Fieldset from '../ui/form/Fieldset.styled';
 import StyledEntryForm from '../ui/form/FormEntry.styled';
 import { Input } from '../ui/form/InputEntry.styled';
 import { Textarea } from '../ui/form/Textarea.styled';
+import { useSession } from 'next-auth/react';
 
 export default function EntryCreateForm() {
+	const { data: session } = useSession();
 	const currentLocation = useStore(state => state.currentLocation);
 	const initInputState = {
 		isAlive: true,
@@ -36,6 +38,8 @@ export default function EntryCreateForm() {
 				numberValue: oldEntry.number,
 				topographyValue: oldEntry.topography,
 				descriptionValue: oldEntry.description,
+				user: oldEntry.user,
+				img: oldEntry.img,
 			});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,7 +51,7 @@ export default function EntryCreateForm() {
 			editEntry(oldEntry.id, { ...entryInput });
 			router.push('/entries');
 		} else {
-			addEntry(entryInput, currentLocation);
+			addEntry(entryInput, currentLocation, session);
 			router.push('/entries');
 		}
 	};

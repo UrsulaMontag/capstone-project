@@ -9,8 +9,10 @@ import CardImage from '../ui/CardImage.styled';
 import ButtonBox from '../ui/CardButtonBox.styled';
 import { Details } from '../ui/CardDetails.styled';
 import { TextBox } from '../ui/TextBox.styled';
+import { useSession } from 'next-auth/react';
 
 export default function EntryDetail() {
+	const { data: session } = useSession();
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
 	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
 	const deleteEntry = useStore(state => state.deleteEntry);
@@ -71,7 +73,7 @@ export default function EntryDetail() {
 				)}
 			</Details>
 
-			{!isDeleteMode ? (
+			{session && !isDeleteMode ? (
 				<ButtonBox>
 					<Button
 						type="button"
@@ -96,7 +98,7 @@ export default function EntryDetail() {
 						✎
 					</Button>
 				</ButtonBox>
-			) : (
+			) : session && isDeleteMode ? (
 				<ButtonBox>
 					<Button
 						variant="warning"
@@ -119,7 +121,7 @@ export default function EntryDetail() {
 						Abbrechen
 					</Button>
 				</ButtonBox>
-			)}
+			) : null}
 		</DetailCard>
 	);
 }
