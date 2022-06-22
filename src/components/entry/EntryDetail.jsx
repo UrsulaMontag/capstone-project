@@ -13,8 +13,6 @@ import { useSession } from 'next-auth/react';
 
 export default function EntryDetail() {
 	const { data: session } = useSession();
-	session && console.log(session);
-
 	const [isDeleteMode, setIsDeleteMode] = useState(false);
 	const setEntryToUpdate = useStore(state => state.setEntryToUpdate);
 	const deleteEntry = useStore(state => state.deleteEntry);
