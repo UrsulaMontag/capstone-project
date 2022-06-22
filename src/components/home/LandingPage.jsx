@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Accountbutton from '../login/AccountButton';
 import HomeImageBox from '../ui/HomeImageBox.styled';
 import Typography from '../ui/Typography';
 
@@ -18,6 +19,7 @@ export default function LandingPage() {
 			<Typography variant="h2" component="h2">
 				was - wann - wo
 			</Typography>
+			<Accountbutton />
 		</>
 	);
 }

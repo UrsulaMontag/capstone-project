@@ -50,6 +50,12 @@ export default function Typography({ children, variant, component, ...rest }) {
 					{children}
 				</StyledInfoHead>
 			);
+		case 'login-info':
+			return (
+				<StyledInfoLogin {...rest} as={component}>
+					{children}
+				</StyledInfoLogin>
+			);
 	}
 }
 
@@ -88,4 +94,9 @@ const StyledInfoText = styled.p`
 const StyledInfoHead = styled.span`
 	color: var(--bg-color-light);
 	font-weight: 200;
+`;
+const StyledInfoLogin = styled.h2`
+	color: var(--bg-color-light);
+	font-size: 2.2rem;
+	font-family: 'Kdam Thmor Pro', sans-serif;
 `;

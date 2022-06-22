@@ -8,6 +8,8 @@ const entrySchema = new mongoose.Schema({
 	number: String,
 	topography: String,
 	description: String,
+	user: String,
+	img: String,
 });
 const Product = mongoose.models?.Entry ?? mongoose.model('Entry', entrySchema);
 

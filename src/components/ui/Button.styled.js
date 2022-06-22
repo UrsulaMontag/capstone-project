@@ -24,14 +24,20 @@ const Button = styled.button`
 			height: 4.6rem;
 			font-weight: 700;
 		`};
+	${({ variant }) =>
+		variant === 'login' &&
+		css`
+			box-shadow: 6px -3px #000;
+		`};
+	${({ variant }) =>
+		variant === 'logout' &&
+		css`
+			box-shadow: 6px -3px #000;
+			background: var(--color-warning-red);
+		`};
 
-	:hover {
-		background: var(--button-bg-color--hover);
-		border: 2px solid var(--main-bg-color);
-	}
 	:active {
 		box-shadow: none;
-		filter: none;
 	}
 `;
 
