@@ -4,7 +4,7 @@ const Box = styled.section`
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	height: 93vh;
+	min-height: 93vh;
 	background-image: url('/contourLine.svg');
 	${({ variant }) =>
 		variant == 'text' &&

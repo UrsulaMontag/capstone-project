@@ -44,7 +44,7 @@ const useStore = create(set => {
 				topography: input.topographyValue ? input.topographyValue : null,
 				description: input.descriptionValue ? input.descriptionValue : null,
 				user: session.user.email,
-				img: input.imgValue ? input.imgValue : '/homepic.png',
+				img: input.imgValue ? input.imgValue : null,
 			};
 			try {
 				const response = await fetch('/api/entry/create', {
