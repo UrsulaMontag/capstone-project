@@ -4,9 +4,15 @@ const nextConfig = {
 	compiler: {
 		styledComponents: true,
 	},
-	images: {
-		domains: ['source.unsplash.com'],
+
+	env: {
+		CLOUDINARY_PRESET: process.env.CLOUDINARY_PRESET,
+		CLOUDINARY_CLOUD: process.env.CLOUDINARY_CLOUD,
 	},
+	images: {
+		domains: ['res.cloudinary.com', 'images.unsplash.com'],
+	},
+	swcMinify: false,
 };
 
 module.exports = nextConfig;
